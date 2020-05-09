@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>ru.sadv1r.ansible-vault-editor-idea-plugin</id>
+    <name>Ansible Vault Editor</name>
+    <vendor email="sadv12@gmail.com" url="http://sadv1r.ru">Sadv1r</vendor>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
+                class="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
+                text="Vault Modify Action">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
