@@ -17,6 +17,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Verify IDEA compatibility
+        uses: thepieterdc/intellij-plugin-verifier-action@v1.1.2
         with:
           plugin: '/home/runner/work/demo-plugin/demo-plugin/build/distributions/*'
           versions: |
