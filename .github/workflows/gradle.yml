@@ -21,6 +21,5 @@ jobs:
         with:
           plugin: '/home/runner/work/ansible-vault-editor-idea-plugin/ansible-vault-editor-idea-plugin/build/distributions/*'
           versions: |
-            193.1
-            201.1
+            2019.3.3
             LATEST-EAP-SNAPSHOT
