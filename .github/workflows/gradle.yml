@@ -16,11 +16,7 @@ jobs:
           java-version: 1.8
       - name: Build with Gradle
         run: ./gradlew buildPlugin
-  
-  verify_compatibility:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: thepieterdc/intellij-plugin-verifier-action@v1.1.2
+      - name: Verify IDEA compatibility
         with:
           plugin: '/home/runner/work/demo-plugin/demo-plugin/build/distributions/*'
           versions: |
