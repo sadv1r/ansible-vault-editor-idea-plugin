@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew buildPlugin
+        run: ./gradlew build
       - name: Verify IDEA compatibility
         with:
           plugin: '/home/runner/work/demo-plugin/demo-plugin/build/distributions/*'
