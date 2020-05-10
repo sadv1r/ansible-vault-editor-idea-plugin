@@ -30,6 +30,7 @@ jobs:
           cat ${{steps.verify.outputs.verification-output-log-filename}}
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
+        if: always()
         with:
           chat: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
