@@ -25,6 +25,7 @@ jobs:
             LATEST-EAP-SNAPSHOT
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
+        if: always()
         with:
           chat: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
