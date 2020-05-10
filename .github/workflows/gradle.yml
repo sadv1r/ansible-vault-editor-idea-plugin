@@ -23,3 +23,8 @@ jobs:
           versions: |
             2019.3.3
             LATEST-EAP-SNAPSHOT
+      - name: Telegram Message Notify
+        uses: appleboy/telegram-action@0.0.7
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
