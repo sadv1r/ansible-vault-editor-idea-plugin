@@ -22,7 +22,7 @@ public class VaultHandler {
 
     public static byte[] encrypt(byte[] cleartext, String password, String cypher) throws IOException {
         @NotNull Optional<Cypher> cypherInstance = CypherFactory.getCypher(cypher);
-        if (cypherInstance.isEmpty()) {
+        if (!cypherInstance.isPresent()) {
             throw new IOException("Unsupported vault cypher");
         }
 
