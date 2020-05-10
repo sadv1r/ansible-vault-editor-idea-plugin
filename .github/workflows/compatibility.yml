@@ -1,6 +1,7 @@
 name: IntelliJ Plugin Compatibility
 
 on:
+  push:
   schedule:
     - cron: '3 0 * * *'
 
