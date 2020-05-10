@@ -52,19 +52,27 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
     override fun doOKAction() {
         if (okAction.isEnabled) {
             try {
-                val decrypt = VaultHandler.decrypt(document.text, String(pass.password))
+                val decrypt = getDecryptedOrEmpty()
+                close(OK_EXIT_CODE)
                 VaultEditorDialog(
                     document,
                     decrypt,
                     pass.password
                 ).showAndGet()
-                close(OK_EXIT_CODE)
             } catch (e: IOException) {
                 wrongPasswordLabel.isVisible = true
                 pass.requestFocus()
                 repaint()
             }
         }
+    }
+
+    private fun getDecryptedOrEmpty(): ByteArray {
+        if (document.text.isEmpty()) {
+            return ByteArray(0)
+        }
+
+        return VaultHandler.decrypt(document.text, String(pass.password))
     }
 
 }
