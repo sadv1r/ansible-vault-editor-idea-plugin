@@ -7,7 +7,7 @@ on:
 
 jobs:
   compatibility:
-    name: Ensure plugin compatibility against the latest EAP snapshot for both IDEA Community, IDEA Ultimate
+    name: Ensure plugin compatibility against the latest EAP snapshot for both IDEA Community and IDEA Ultimate
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
