@@ -27,7 +27,7 @@ jobs:
             ideaIU:LATEST-EAP-SNAPSHOT
       - name: Get log file path and print contents
         run: |
-          echo "The log file path is: ${{steps.verify.outputs.verification-output-log-filename}}" ;
+          echo "The log file path is: ${{steps.verify.outputs.verification-output-log-filename}}";
           cat ${{steps.verify.outputs.verification-output-log-filename}}
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
