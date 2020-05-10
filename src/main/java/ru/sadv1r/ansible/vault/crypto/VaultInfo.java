@@ -40,7 +40,7 @@ public class VaultInfo {
 
         final String vaultCypherName = infoParts[CYPHER_PART_INDEX];
         final Optional<Cypher> optionalCypher = CypherFactory.getCypher(vaultCypherName);
-        if (optionalCypher.isEmpty()) {
+        if (!optionalCypher.isPresent()) {
             throw new IOException("Unsupported vault cypher");
         }
         this.cypher = optionalCypher.get();
