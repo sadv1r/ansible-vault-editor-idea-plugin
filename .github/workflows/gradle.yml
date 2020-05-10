@@ -26,6 +26,6 @@ jobs:
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
         with:
-          chat: ${{ secrets.chat }}
-          token: ${{ secrets.token }}
+          chat: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           status: ${{ job.status }}
