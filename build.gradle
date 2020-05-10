@@ -36,7 +36,36 @@ patchPluginXml {
     sinceBuild 193.1
     untilBuild "201.*"
 
-    pluginDescription """Ansible Vault Editor with auto encryption/decryption"""
+    pluginDescription """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin">GitHub</a> |
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/issues">Issues</a>
+<br/>
+<br/>
+Helps you create and edit Ansible Vaults
+<br/>
+<br/>
+<b>Features</b>
+<ul>
+    <li>Create vault in empty file</li>
+    <li>Edit existing vault with auto encryption and decryption</li>
+    <li>Decrypted yml files syntax highlight</li>
+</ul>
+"""
 
-    changeNotes """Initial release of the plugin"""
+    changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.1"><b>v1.1</b></a> (2020-05-10)
+<br/>
+<ul>
+    <li>New logo</li>
+    <li>Better action name</li>
+    <li>Possibility to create new vault from empty file</li>
+</ul>
+<br/>
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.0"><b>v1.0</b></a> (2020-05-10)
+<br/>
+<ul>
+    <li>Initial release of the plugin</li>
+    <li>Basic editor for encrypted YML files</li>
+</ul>
+"""
 }
