@@ -1,7 +1,6 @@
 name: Latest EAP Compatibility
 
 on:
-  push:
   schedule:
     - cron: '3 0 * * *'
 
