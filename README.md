@@ -1,4 +1,5 @@
 ![Gradle CI](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Gradle%20CI/badge.svg?branch=master)
+![Latest EAP Compatibility](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Latest%20EAP%20Compatibility/badge.svg?branch=master)
 
 # Ansible Vault Editor IntelliJ Plugin
 Ansible Vault Editor is an IntelliJ IDEA plugin that helps you edit Ansible® Vaults, preventing accidental push of decrypted confidential data

@@ -1,4 +1,4 @@
-name: IntelliJ Plugin Compatibility
+name: Latest EAP Compatibility
 
 on:
   schedule:
