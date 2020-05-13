@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.1'
+version '1.2'
 
 repositories {
     mavenCentral()
@@ -37,11 +37,11 @@ patchPluginXml {
     untilBuild "201.*"
 
     pluginDescription """
+Helps you create and edit Ansible Vaults
+<br/>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin">GitHub</a> |
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/issues">Issues</a>
-<br/>
-<br/>
-Helps you create and edit Ansible Vaults
 <br/>
 <br/>
 <b>Features</b>
@@ -49,10 +49,17 @@ Helps you create and edit Ansible Vaults
     <li>Create vault in empty file</li>
     <li>Edit existing vault with auto encryption and decryption</li>
     <li>Decrypted yml files syntax highlight</li>
+    <li>Remember vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a></li>
 </ul>
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.2"><b>v1.2</b></a> (2020-05-14)
+<br/>
+<ul>
+    <li>Possibility to remember vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a></li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.1"><b>v1.1</b></a> (2020-05-10)
 <br/>
 <ul>
