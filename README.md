@@ -17,6 +17,7 @@ Features
 * Create vault in empty file
 * Edit existing vault with auto encryption and decryption
 * Decrypted yml files syntax highlight
+* Possibility to remember vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html)
 
 
 Usage
