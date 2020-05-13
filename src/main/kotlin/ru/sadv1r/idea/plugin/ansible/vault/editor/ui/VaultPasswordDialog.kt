@@ -4,6 +4,7 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.ui.DialogWrapper
 import org.jetbrains.annotations.NotNull
 import ru.sadv1r.ansible.vault.VaultHandler
+import ru.sadv1r.idea.plugin.ansible.vault.editor.savePassword
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Component
@@ -14,6 +15,7 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
 
     private lateinit var pass: JPasswordField
     private lateinit var wrongPasswordLabel: JLabel
+    private lateinit var savePassCheckBox: JCheckBox
 
     init {
         init()
@@ -42,6 +44,9 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
         wrongPasswordLabel.isVisible = false
         dialogPanel.add(wrongPasswordLabel, BorderLayout.CENTER)
 
+        savePassCheckBox = JCheckBox("Remember password")
+
+        dialogPanel.add(savePassCheckBox)
         return dialogPanel
     }
 
@@ -50,20 +55,25 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
     }
 
     override fun doOKAction() {
-        if (okAction.isEnabled) {
-            try {
-                val decrypt = getDecryptedOrEmpty()
-                close(OK_EXIT_CODE)
-                VaultEditorDialog(
-                    document,
-                    decrypt,
-                    pass.password
-                ).showAndGet()
-            } catch (e: IOException) {
-                wrongPasswordLabel.isVisible = true
-                pass.requestFocus()
-                repaint()
+        if (!okAction.isEnabled) {
+            return
+        }
+
+        try {
+            val decrypt = getDecryptedOrEmpty()
+            if (savePassCheckBox.isSelected) {
+                savePassword(document, pass.password)
             }
+            close(OK_EXIT_CODE)
+            VaultEditorDialog(
+                document,
+                decrypt,
+                pass.password
+            ).showAndGet()
+        } catch (e: IOException) {
+            wrongPasswordLabel.isVisible = true
+            pass.requestFocus()
+            repaint()
         }
     }
 

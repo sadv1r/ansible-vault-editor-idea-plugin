@@ -4,5 +4,3 @@ build/
 .idea/
 /org/
 .DS_Store
-
-PasswordManager.kt
