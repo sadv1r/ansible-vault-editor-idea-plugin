@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16" width="16" height="16">
+    <defs>
+        <path d="M16 8C16 12.42 12.42 16 8 16C3.58 16 0 12.42 0 8C0 3.58 3.58 0 8 0C8 0 8 0 8 0C12.42 0 16 3.58 16 8C16 8 16 8 16 8"
+              id="j3AolfgFee"/>
+        <path d="M10.2 10.11L7.08 7.65L8.13 5L10.2 10.11ZM11.81 11.29C9.9 6.69 8.84 4.14 8.63 3.63C8.55 3.42 8.35 3.28 8.13 3.29C7.91 3.28 7.71 3.42 7.63 3.63C7.39 4.19 6.23 6.99 4.13 12.03L5.33 12.03L6.71 8.56C9.19 10.56 10.56 11.67 10.84 11.9C11 12.03 11.12 12.09 11.28 12.09C11.6 12.1 11.86 11.85 11.87 11.54C11.87 11.53 11.87 11.53 11.87 11.52C11.87 11.45 11.84 11.36 11.81 11.29"
+              id="aHaZBgKMr"/>
+    </defs>
+    <g>
+        <g>
+            <use xlink:href="#j3AolfgFee" opacity="1" fill="#000000" fill-opacity="1"/>
+            <g>
+                <use xlink:href="#j3AolfgFee" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1"
+                     stroke-opacity="0"/>
+            </g>
+        </g>
+        <g>
+            <use xlink:href="#aHaZBgKMr" opacity="1" fill="#ffffff" fill-opacity="1"/>
+            <g>
+                <use xlink:href="#aHaZBgKMr" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1"
+                     stroke-opacity="0"/>
+            </g>
+        </g>
+    </g>
+</svg>
