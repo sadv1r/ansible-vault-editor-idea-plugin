@@ -9,6 +9,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <codeInsight.lineMarkerProvider language=""
+                                        implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultLineMarkerProvider"/>
     </extensions>
 
     <actions>
