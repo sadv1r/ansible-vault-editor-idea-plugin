@@ -1,0 +1,22 @@
+{
+  parserClass="ru.sadv1r.idea.plugin.ansible.vault.language.parser.AnsibleVaultParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="AnsibleVault"
+  psiImplClassSuffix="Impl"
+  psiPackage="ru.sadv1r.idea.plugin.ansible.vault.language.psi"
+  psiImplPackage="ru.sadv1r.idea.plugin.ansible.vault.language.psi.impl"
+
+  elementTypeHolderClass="ru.sadv1r.idea.plugin.ansible.vault.language.psi.AnsibleVaultTypes"
+  elementTypeClass="ru.sadv1r.idea.plugin.ansible.vault.language.psi.AnsibleVaultElementType"
+  tokenTypeClass="ru.sadv1r.idea.plugin.ansible.vault.language.psi.AnsibleVaultTokenType"
+
+  psiImplUtilClass="ru.sadv1r.idea.plugin.ansible.vault.language.psi.impl.AnsibleVaultPsiImplUtil"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property)
+
+property ::= (MAGIC_PART SEPARATOR VERSION SEPARATOR CYPHER NEW_LINE DATA)
