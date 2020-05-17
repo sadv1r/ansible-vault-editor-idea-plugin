@@ -21,6 +21,8 @@ dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test-testng'
 }
 
+sourceSets.main.java.srcDirs += 'src/main/gen'
+
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }

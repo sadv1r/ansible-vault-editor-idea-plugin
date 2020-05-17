@@ -10,6 +10,18 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <fileType name="Ansible Vault File" implementationClass="ru.sadv1r.idea.plugin.ansible.vault.language.AnsibleVaultFileType"
+                  fieldName="INSTANCE" extensions="yml"/>
+        <lang.parserDefinition language="Ansible Vault"
+                               implementationClass="ru.sadv1r.idea.plugin.ansible.vault.language.AnsibleVaultParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="Ansible Vault"
+                                       implementationClass="ru.sadv1r.idea.plugin.ansible.vault.language.AnsibleVaultSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="ru.sadv1r.idea.plugin.ansible.vault.language.AnsibleVaultColorSettingsPage"/>
+        <lang.foldingBuilder language="Ansible Vault"
+                             implementationClass="ru.sadv1r.idea.plugin.ansible.vault.language.AnsibleVaultFoldingBuilder"/>
+        <lang.foldingBuilder language="TEXT"
+                             implementationClass="ru.sadv1r.idea.plugin.ansible.vault.language.AnsibleVaultFoldingBuilder"/>
+
         <intentionAction>
             <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.PropertyVaultCreateIntentionAction</className>
             <category>Ansible vault</category>
