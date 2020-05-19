@@ -9,4 +9,4 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt install ansible
+      - run: ansible -h
