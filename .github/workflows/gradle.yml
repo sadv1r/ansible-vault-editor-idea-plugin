@@ -9,4 +9,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: echo lal > hd.txt
       - run: ls -la
