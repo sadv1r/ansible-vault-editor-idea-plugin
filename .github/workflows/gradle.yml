@@ -16,6 +16,8 @@ jobs:
           java-version: 11
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Test generating vaults with official CLI tool
+        run: ./gradlew integrationTest
       - name: Verify IDEA compatibility
         uses: thepieterdc/intellij-plugin-verifier-action@v1.1.2
         with:
