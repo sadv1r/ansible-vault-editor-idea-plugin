@@ -9,4 +9,4 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: ansible -h
+      - run: ls -la
