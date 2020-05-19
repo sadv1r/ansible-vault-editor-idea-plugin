@@ -1,5 +1,6 @@
 package ru.sadv1r.ansible.vault;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jetbrains.annotations.NotNull;
 import ru.sadv1r.ansible.vault.crypto.CypherFactory;
 import ru.sadv1r.ansible.vault.crypto.Util;
@@ -8,10 +9,15 @@ import ru.sadv1r.ansible.vault.crypto.decoders.Cypher;
 import ru.sadv1r.ansible.vault.crypto.decoders.impl.CypherAES256;
 
 import java.io.IOException;
+import java.security.Security;
 import java.util.Arrays;
 import java.util.Optional;
 
 public class VaultHandler {
+
+    static {
+        Security.addProvider(new BouncyCastleProvider());
+    }
 
     private static final String DEFAULT_CYPHER = CypherAES256.CYPHER_ID;
     private static final String LINE_BREAK = "\n";

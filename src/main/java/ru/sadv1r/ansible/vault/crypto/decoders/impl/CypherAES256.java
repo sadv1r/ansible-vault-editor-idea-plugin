@@ -24,7 +24,7 @@ public class CypherAES256 implements Cypher {
     private static final String CHAR_ENCODING = "UTF-8";
     private static final String KEYGEN_ALGO = "HmacSHA256";
     private static final String CYPHER_KEY_ALGO = "AES";
-    private static final String CYPHER_ALGO = "AES/CTR/NoPadding";
+    private static final String CYPHER_ALGO = "AES/CTR/PKCS7Padding";
     private static final int KEYLEN = 32;
     private static final int IVLEN = 16;
     private static final int ITERATIONS = 10000;
@@ -67,41 +67,6 @@ public class CypherAES256 implements Cypher {
         return Arrays.equals(hmac, calculated);
     }
 
-    public int paddingLength(byte[] decrypted) {
-        if (decrypted.length == 0) {
-            logger.debug("Empty decoded text has no padding.");
-            return 0;
-        }
-
-        logger.debug("Padding length: {}", decrypted[decrypted.length - 1]);
-        return decrypted[decrypted.length - 1];
-    }
-
-    public byte[] unpad(byte[] decrypted) {
-        int length = decrypted.length - paddingLength(decrypted);
-        return Arrays.copyOfRange(decrypted, 0, length);
-    }
-
-    public byte[] pad(byte[] cleartext) throws IOException {
-        byte[] padded;
-
-        try {
-            int blockSize = Cipher.getInstance(CYPHER_ALGO).getBlockSize();
-            logger.debug("Padding to block size: {}", blockSize);
-            int padding_length = (blockSize - (cleartext.length % blockSize));
-            if (padding_length == 0) {
-                padding_length = blockSize;
-            }
-            padded = Arrays.copyOf(cleartext, cleartext.length + padding_length);
-            padded[padded.length - 1] = (byte) padding_length;
-
-        } catch (Exception ex) {
-            throw new IOException("Error calculating padding for " + CYPHER_ALGO + ": " + ex.getMessage());
-        }
-
-        return padded;
-    }
-
     public byte[] decryptAES(byte[] cypher, byte[] key, byte[] iv) throws IOException {
 
         SecretKeySpec keySpec = new SecretKeySpec(key, CYPHER_KEY_ALGO);
@@ -109,8 +74,7 @@ public class CypherAES256 implements Cypher {
         try {
             Cipher cipher = Cipher.getInstance(CYPHER_ALGO);
             cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-            byte[] decrypted = cipher.doFinal(cypher);
-            return unpad(decrypted);
+            return cipher.doFinal(cypher);
         } catch (Exception ex) {
             throw new IOException("Failed to decrypt data: " + ex.getMessage());
         }
@@ -178,9 +142,7 @@ public class CypherAES256 implements Cypher {
         logger.debug("Key 2: {} - {}", hmacKey.length, Util.hexit(hmacKey, 100));
         byte[] iv = keys.getIv();
         logger.debug("IV: {} - {}", iv.length, Util.hexit(iv, 100));
-        logger.debug("Original data length: {}", data.length);
-        data = pad(data);
-        logger.debug("Padded data length: {}", data.length);
+        logger.debug("Data length: {}", data.length);
         byte[] encrypted = encryptAES(data, keys.getEncryptionKey(), keys.getIv());
         byte[] hmacHash = calculateHMAC(keys.getHmacKey(), encrypted);
         VaultContent vaultContent = new VaultContent(keys.getSalt(), hmacHash, encrypted);
