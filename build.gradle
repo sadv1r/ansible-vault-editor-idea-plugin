@@ -18,6 +18,9 @@ dependencies {
         exclude group: 'org.picketbox', module: 'picketbox'
         exclude group: 'org.jboss.logging', module: 'jboss-logging'
     }
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-testng'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -31,6 +34,13 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+test{
+    useJUnit()
+}
+
+task integrationTest(type: Test) {
+    useTestNG()
 }
 
 patchPluginXml {
