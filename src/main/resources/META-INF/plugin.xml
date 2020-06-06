@@ -9,6 +9,10 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <intentionAction>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyIntentionAction</className>
+            <category>Ansible</category>
+        </intentionAction>
     </extensions>
 
     <actions>
