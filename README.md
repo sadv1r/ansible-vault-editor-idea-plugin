@@ -36,6 +36,7 @@ Changelog
 ### [v1.4](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.4) (2020-06-06)
 
 * Decrypt by Alt+Enter
+* Cleaning password field if wrong for faster correction
 
 ### [v1.3](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.3) (2020-05-19)
 

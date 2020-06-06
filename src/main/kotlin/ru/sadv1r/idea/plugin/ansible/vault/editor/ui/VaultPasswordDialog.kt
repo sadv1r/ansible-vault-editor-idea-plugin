@@ -72,6 +72,7 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
             ).showAndGet()
         } catch (e: IOException) {
             wrongPasswordLabel.isVisible = true
+            pass.text = null
             pass.requestFocus()
             repaint()
         }
