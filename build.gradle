@@ -1,11 +1,11 @@
 plugins {
-    id 'org.jetbrains.intellij' version '0.4.20'
+    id 'org.jetbrains.intellij' version '0.4.21'
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
 }
 
 group 'ru.sadv1r'
-version '1.4'
+version '1.5'
 
 repositories {
     mavenCentral()
@@ -25,7 +25,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2019.3'
+    version '2020.1'
     pluginName 'Ansible Vault Editor'
 }
 
@@ -44,8 +44,8 @@ task integrationTest(type: Test) {
 }
 
 patchPluginXml {
-    sinceBuild 193.1
-    untilBuild "201.*"
+    sinceBuild 191.1
+    untilBuild "202.*"
 
     pluginDescription """
 Helps you create and edit Ansible Vaults
@@ -65,6 +65,12 @@ Helps you create and edit Ansible Vaults
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.5"><b>v1.5</b></a> (2020-07-13)
+<br/>
+<ul>
+    <li>Support from older than ever IntelliJ 2019.1 to new 2020.2</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.4"><b>v1.4</b></a> (2020-06-06)
 <br/>
 <ul>
