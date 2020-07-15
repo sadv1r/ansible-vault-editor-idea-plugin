@@ -33,6 +33,10 @@ Usage
 Changelog
 ---------
 
+### [v1.5](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.5) (2020-07-13)
+
+* Support from older than ever IntelliJ 2019.1 to new 2020.2
+
 ### [v1.4](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.4) (2020-06-06)
 
 * Decrypt by Alt+Enter

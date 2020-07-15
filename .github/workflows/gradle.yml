@@ -1,6 +1,3 @@
-# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java#publishing-using-gradle
-
 name: Gradle CI
 
 on: [push]
@@ -23,7 +20,8 @@ jobs:
         with:
           plugin: '/home/runner/work/ansible-vault-editor-idea-plugin/ansible-vault-editor-idea-plugin/build/distributions/*'
           versions: |
-            2019.3.3
+            2019.1
+            2020.1
             LATEST-EAP-SNAPSHOT
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
