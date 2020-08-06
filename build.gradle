@@ -25,6 +25,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
+    plugins = ['yaml']
     version '2020.1'
     pluginName 'Ansible Vault Editor'
 }
@@ -35,7 +36,7 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
-test{
+test {
     useJUnit()
 }
 
@@ -59,12 +60,20 @@ Helps you create and edit Ansible Vaults
 <ul>
     <li>Create vault in empty file</li>
     <li>Edit existing vault with auto encryption and decryption</li>
+    <li>Encrypted <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml">YAML properties</a> modification</li>
     <li>Decrypted yml files syntax highlight</li>
     <li>Remember vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a></li>
 </ul>
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.6"><b>v1.6</b></a> (2020-08-08)
+<br/>
+<ul>
+    <li>Encrypted <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml">YAML properties</a> modification</li>
+    <li>Decrypted editor syntax highlighting for all languages supported by IDE</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.5"><b>v1.5</b></a> (2020-07-13)
 <br/>
 <ul>

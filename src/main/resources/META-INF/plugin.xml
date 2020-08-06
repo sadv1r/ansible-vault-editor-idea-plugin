@@ -6,11 +6,16 @@
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <intentionAction>
             <className>ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyIntentionAction</className>
+            <category>Ansible</category>
+        </intentionAction>
+        <intentionAction>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.PropertyVaultModifyIntentionAction</className>
             <category>Ansible</category>
         </intentionAction>
     </extensions>
