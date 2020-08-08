@@ -1,9 +1,7 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor.ui
 
-import com.intellij.openapi.editor.Document
 import com.intellij.openapi.ui.DialogWrapper
-import org.jetbrains.annotations.NotNull
-import ru.sadv1r.ansible.vault.VaultHandler
+import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
 import ru.sadv1r.idea.plugin.ansible.vault.editor.savePassword
 import java.awt.BorderLayout
 import java.awt.Color
@@ -11,17 +9,18 @@ import java.awt.Component
 import java.io.IOException
 import javax.swing.*
 
-class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapper(true) {
+class VaultPasswordDialog(
+    private val vault: Vault
+) : DialogWrapper(true) {
 
     private lateinit var pass: JPasswordField
     private lateinit var wrongPasswordLabel: JLabel
     private lateinit var savePassCheckBox: JCheckBox
 
     init {
-        init()
         title = "Vault Decrypt"
         setResizable(true)
-        pass.requestFocus()
+        init()
     }
 
     override fun createCenterPanel(): JComponent? {
@@ -62,13 +61,13 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
         try {
             val decrypt = getDecryptedOrEmpty()
             if (savePassCheckBox.isSelected) {
-                savePassword(document, pass.password)
+                savePassword(vault, pass.password)
             }
             close(OK_EXIT_CODE)
             VaultEditorDialog(
-                document,
                 decrypt,
-                pass.password
+                pass.password,
+                vault
             ).showAndGet()
         } catch (e: IOException) {
             wrongPasswordLabel.isVisible = true
@@ -79,11 +78,11 @@ class VaultPasswordDialog(private val document: @NotNull Document) : DialogWrapp
     }
 
     private fun getDecryptedOrEmpty(): ByteArray {
-        if (document.text.isEmpty()) {
+        if (vault.isEmpty()) {
             return ByteArray(0)
         }
 
-        return VaultHandler.decrypt(document.text, String(pass.password))
+        return vault.getDecryptedData(String(pass.password))
     }
 
 }

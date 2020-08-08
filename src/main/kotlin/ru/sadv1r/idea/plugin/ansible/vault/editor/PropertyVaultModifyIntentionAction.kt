@@ -5,15 +5,17 @@ import com.intellij.codeInsight.intention.PsiElementBaseIntentionAction
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
+import org.jetbrains.yaml.psi.YAMLKeyValue
+import org.jetbrains.yaml.psi.YAMLScalarList
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
 import java.io.IOException
 
-class VaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
+class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
 
     override fun getText(): String {
-        return "Modify Vault"
+        return "Modify Vault Value"
     }
 
     override fun getFamilyName(): String {
@@ -25,16 +27,16 @@ class VaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAct
     }
 
     override fun isAvailable(project: Project, editor: Editor?, element: PsiElement): Boolean {
-        if (editor == null) {
-            return false
-        }
+        val property: YAMLScalarList = element.parent as? YAMLScalarList ?: return false
+        val propertyValueText = property.textValue
 
-        return editor.document.text.startsWith(VaultInfo.MAGIC_PART_DATA)
+        return propertyValueText.startsWith(VaultInfo.MAGIC_PART_DATA)
     }
 
     override fun invoke(project: Project, editor: Editor?, element: PsiElement) {
         val document = editor?.document ?: return
-        val vault = FileVault(document)
+        val property: YAMLKeyValue = element.parent?.parent as? YAMLKeyValue ?: return
+        val vault = PropertyVault(document, property)
 
         val password = getPassword(vault)
         if (password == null) {
@@ -52,5 +54,4 @@ class VaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAct
             }
         }
     }
-
 }

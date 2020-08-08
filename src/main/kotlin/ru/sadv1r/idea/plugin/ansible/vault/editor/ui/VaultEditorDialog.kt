@@ -1,25 +1,23 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor.ui
 
 import com.intellij.ide.highlighter.HighlighterFactory
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.ex.EditorEx
-import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.fileTypes.UnknownFileType
 import com.intellij.openapi.ui.DialogWrapper
-import org.jetbrains.annotations.NotNull
 import ru.sadv1r.ansible.vault.VaultHandler
+import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
 import java.awt.BorderLayout
 import javax.swing.JComponent
 import javax.swing.JPanel
 
 
 class VaultEditorDialog(
-    private val document: @NotNull Document,
     private val decryptedDocumentData: ByteArray,
-    private val password: CharArray
+    private val password: CharArray,
+    private val vault: Vault
 ) : DialogWrapper(true) {
 
     lateinit var decryptedDocument: Document
@@ -52,21 +50,19 @@ class VaultEditorDialog(
         if (okAction.isEnabled) {
             val encrypt = VaultHandler.encrypt(decryptedDocument.text.toByteArray(), String(password))
 
-            ApplicationManager.getApplication().runWriteAction {
-                document.setText(encrypt.toString(Charsets.UTF_8))
-            }
+            vault.setEncryptedData(encrypt.toString(Charsets.UTF_8))
 
             close(OK_EXIT_CODE)
         }
     }
 
     private fun setHighlighting(editor: EditorEx) {
-        val cssFileType = FileTypeManager.getInstance().getFileTypeByExtension("yml")
-        if (cssFileType === UnknownFileType.INSTANCE) {
+        val fileType = vault.getFileType()
+        if (fileType === UnknownFileType.INSTANCE) {
             return
         }
         val editorHighlighter = HighlighterFactory.createHighlighter(
-            cssFileType,
+            fileType,
             EditorColorsManager.getInstance().globalScheme,
             null
         )

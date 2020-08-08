@@ -4,29 +4,22 @@ import com.intellij.credentialStore.CredentialAttributes
 import com.intellij.credentialStore.Credentials
 import com.intellij.credentialStore.generateServiceName
 import com.intellij.ide.passwordSafe.PasswordSafe
-import com.intellij.openapi.editor.Document
-import com.intellij.openapi.fileEditor.FileDocumentManager
 import org.jetbrains.annotations.Nullable
 
-fun savePassword(document: Document, password: CharArray) {
-    val createCredentialAttributes = createDocumentCredentialAttributes(document)
+fun savePassword(vault: Vault, password: CharArray) {
+    val createCredentialAttributes = createCredentialAttributes(vault.getKey())
     val credentials = Credentials("vault-password", password)
     PasswordSafe.instance.set(createCredentialAttributes, credentials)
 }
 
-fun getPassword(document: Document): @Nullable String? {
-    val createCredentialAttributes = createDocumentCredentialAttributes(document)
+fun getPassword(vault: Vault): @Nullable String? {
+    val createCredentialAttributes = createCredentialAttributes(vault.getKey())
     return PasswordSafe.instance.getPassword(createCredentialAttributes)
 }
 
-fun removePassword(document: Document) {
-    val createCredentialAttributes = createDocumentCredentialAttributes(document)
+fun removePassword(vault: Vault) {
+    val createCredentialAttributes = createCredentialAttributes(vault.getKey())
     PasswordSafe.instance.set(createCredentialAttributes, null)
-}
-
-private fun createDocumentCredentialAttributes(document: Document): CredentialAttributes {
-    val path = FileDocumentManager.getInstance().getFile(document)!!.path
-    return createCredentialAttributes(path)
 }
 
 private fun createCredentialAttributes(key: String): CredentialAttributes {
