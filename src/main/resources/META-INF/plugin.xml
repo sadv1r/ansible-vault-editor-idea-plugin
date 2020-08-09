@@ -11,19 +11,25 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <intentionAction>
-            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyIntentionAction</className>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.FileVaultModifyIntentionAction</className>
             <category>Ansible</category>
         </intentionAction>
         <intentionAction>
             <className>ru.sadv1r.idea.plugin.ansible.vault.editor.PropertyVaultModifyIntentionAction</className>
             <category>Ansible</category>
         </intentionAction>
+
+        <applicationService serviceImplementation="ru.sadv1r.idea.plugin.ansible.vault.editor.config.AnsibleVaultEditorSettings"/>
+        <projectConfigurable displayName="Ansible Vault Editor" instance="ru.sadv1r.idea.plugin.ansible.vault.editor.config.VaultPanelConfigurable"/>
+
+        <lang.foldingBuilder language="yaml" order="first" implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.folding.PropertyVaultFoldingBuilder"/>
+        <editorNotificationProvider implementation="ru.sadv1r.idea.plugin.ansible.vault.editor.folding.PropertyVaultFoldingPromo" order="first"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
-                class="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
+        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.FileVaultModifyAction"
+                class="ru.sadv1r.idea.plugin.ansible.vault.editor.FileVaultModifyAction"
                 text="Ansible Vault Editor"
                 icon="AnsibleVaultEditorIcons.ANSIBLE_ICON">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
