@@ -11,19 +11,23 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <intentionAction>
-            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyIntentionAction</className>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.FileVaultModifyIntentionAction</className>
             <category>Ansible</category>
         </intentionAction>
         <intentionAction>
             <className>ru.sadv1r.idea.plugin.ansible.vault.editor.PropertyVaultModifyIntentionAction</className>
             <category>Ansible</category>
         </intentionAction>
+        <intentionAction>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.ChangeFileVaultPasswordIntentionAction</className>
+            <category>Ansible</category>
+        </intentionAction>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
-                class="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
+        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.FileVaultModifyAction"
+                class="ru.sadv1r.idea.plugin.ansible.vault.editor.FileVaultModifyAction"
                 text="Ansible Vault Editor"
                 icon="AnsibleVaultEditorIcons.ANSIBLE_ICON">
             <add-to-group group-id="ToolsMenu" anchor="first"/>

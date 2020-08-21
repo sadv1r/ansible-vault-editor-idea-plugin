@@ -10,6 +10,8 @@ import org.jetbrains.yaml.psi.YAMLScalarList
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
+import ru.sadv1r.idea.plugin.ansible.vault.editor.util.getPassword
+import ru.sadv1r.idea.plugin.ansible.vault.editor.util.removePassword
 import java.io.IOException
 
 class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {

@@ -2,7 +2,7 @@ package ru.sadv1r.idea.plugin.ansible.vault.editor.ui
 
 import com.intellij.openapi.ui.DialogWrapper
 import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
-import ru.sadv1r.idea.plugin.ansible.vault.editor.savePassword
+import ru.sadv1r.idea.plugin.ansible.vault.editor.util.savePassword
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Component

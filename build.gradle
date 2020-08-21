@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.6'
+version '1.7'
 
 repositories {
     mavenCentral()
@@ -72,6 +72,13 @@ Helps you create and edit Ansible Vaults
 <ul>
     <li>Encrypted <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml">YAML properties</a> modification</li>
     <li>Decrypted editor syntax highlighting for all languages supported by IDE</li>
+</ul>
+<br/>
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.7"><b>v1.7</b></a> (TBD)
+<br/>
+<ul>
+    <li>Possibility to change vault password</li>
+    <li>Decreased plugin size</li>
 </ul>
 <br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.5"><b>v1.5</b></a> (2020-07-13)

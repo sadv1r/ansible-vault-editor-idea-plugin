@@ -8,9 +8,11 @@ import com.intellij.psi.PsiElement
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
+import ru.sadv1r.idea.plugin.ansible.vault.editor.util.getPassword
+import ru.sadv1r.idea.plugin.ansible.vault.editor.util.removePassword
 import java.io.IOException
 
-class VaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
+class FileVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
 
     override fun getText(): String {
         return "Modify Vault"

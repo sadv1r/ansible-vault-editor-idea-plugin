@@ -34,6 +34,11 @@ Usage
 Changelog
 ---------
 
+### [v1.7](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.7) (TBD)
+
+* Possibility to change vault password
+* Decreased plugin size
+
 ### [v1.6](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.6) (2020-08-08)
 
 * Encrypted [YAML properties](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml) modification
