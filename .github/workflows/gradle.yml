@@ -16,13 +16,15 @@ jobs:
       - name: Test generated vaults with official CLI tool
         run: ./gradlew integrationTest
       - name: Verify IDEA compatibility
-        uses: thepieterdc/intellij-plugin-verifier-action@v1.1.2
+        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v1.0.3
         with:
-          plugin: '/home/runner/work/ansible-vault-editor-idea-plugin/ansible-vault-editor-idea-plugin/build/distributions/*'
-          versions: |
-            2019.1
-            2020.1
-            LATEST-EAP-SNAPSHOT
+          ide-versions: |
+            ideaIC:2019.1
+            ideaIU:2019.1
+            ideaIC:2020.1
+            ideaIU:2020.1
+            ideaIC:LATEST-EAP-SNAPSHOT
+            ideaIU:LATEST-EAP-SNAPSHOT
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
         if: always()
