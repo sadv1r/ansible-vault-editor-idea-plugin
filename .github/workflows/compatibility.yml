@@ -25,10 +25,6 @@ jobs:
           ide-versions: |
             ideaIC:LATEST-EAP-SNAPSHOT
             ideaIU:LATEST-EAP-SNAPSHOT
-      - name: Get log file path and print contents
-        run: |
-          echo "The log file path is: ${{steps.verify.outputs.verification-output-log-filename}}";
-          cat ${{steps.verify.outputs.verification-output-log-filename}}
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
         if: always()
@@ -36,11 +32,10 @@ jobs:
           chat: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           status: ${{ job.status }}
-      - name: send default message
+      - name: Send Compatibility Log To Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ""
-          message_file: ${{steps.verify.outputs.verification-output-log-filename}}
+          message: "Compatibility Log"
           document: ${{steps.verify.outputs.verification-output-log-filename}}
