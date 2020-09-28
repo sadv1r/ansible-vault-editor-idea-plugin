@@ -3,6 +3,7 @@ name: Latest EAP Compatibility
 on:
   schedule:
     - cron: '3 0 * * *'
+  push:
 
 jobs:
   compatibility:
@@ -35,3 +36,8 @@ jobs:
           chat: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           status: ${{ job.status }}
+      - name: send default message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
