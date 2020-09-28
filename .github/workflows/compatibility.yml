@@ -41,3 +41,6 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: ""
+          message_file: ${{steps.verify.outputs.verification-output-log-filename}}
+          document: ${{steps.verify.outputs.verification-output-log-filename}}
