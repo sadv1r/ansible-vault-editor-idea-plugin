@@ -17,8 +17,8 @@ public class CypherAES implements Cypher {
         throw new IOException(CYPHER_ID + " is not implemented.");
     }
 
-    public String infoLine() {
-        return VaultInfo.vaultInfoForCypher(CYPHER_ID);
+    public String infoLine(String vaultId) {
+        return VaultInfo.vaultInfoForCypher(CYPHER_ID, vaultId);
     }
 
 }

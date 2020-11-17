@@ -29,7 +29,8 @@ public interface Cypher {
      *
      * @return info line
      * @see <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#vault-format">Vault Format</a>
+     * @param vaultId
      */
-    String infoLine();
+    String infoLine(String vaultId);
 
 }

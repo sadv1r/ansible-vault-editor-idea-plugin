@@ -6,6 +6,7 @@ import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.fileTypes.FileTypeManager
 import ru.sadv1r.ansible.vault.VaultHandler
+import ru.sadv1r.ansible.vault.crypto.VaultInfo
 
 class FileVault(
     private val document: Document
@@ -32,5 +33,14 @@ class FileVault(
     override fun getFileType(): FileType {
         val extension = FileDocumentManager.getInstance().getFile(document)?.extension.orEmpty()
         return FileTypeManager.getInstance().getFileTypeByExtension(extension)
+    }
+
+    override fun getVaultId(): String? {
+        val valueText = document.text
+        val firstLineBreakIndex: Int = valueText.indexOf(VaultHandler.LINE_BREAK)
+
+        val infoLinePart: String = valueText.substring(0, firstLineBreakIndex)
+        val vaultInfo = VaultInfo(infoLinePart)
+        return vaultInfo.vaultId;
     }
 }

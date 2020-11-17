@@ -55,7 +55,7 @@ class VaultHandlerIT {
         val encryptedFile: File = File.createTempFile("vault", ".yml", tempDir.toFile())
         encryptedFile.writeBytes(encrypted)
         val passFile = File.createTempFile("pass", ".txt", tempDir.toFile())
-        passFile.writeBytes(password.toByteArray())
+        passFile.writeText(password)
 
         val command = listOf(
             "ansible-vault",
@@ -78,18 +78,80 @@ class VaultHandlerIT {
     }
 
     @Test(dataProvider = "dataProvider", threadPoolSize = 4)
+    fun encryptWithId(data: String, password: String) {
+        println("Encrypting Vault. Data length: ${data.length}, password length: ${password.length}")
+        val encrypted = VaultHandler.encrypt(data.toByteArray(), password, "test")
+
+        val tempDir = Files.createTempDirectory("")
+        val encryptedFile: File = File.createTempFile("vault", ".yml", tempDir.toFile())
+        encryptedFile.writeBytes(encrypted)
+        val passFile = File.createTempFile("pass", ".txt", tempDir.toFile())
+        passFile.writeText(password)
+
+        val command = listOf(
+            "ansible-vault",
+            "decrypt",
+            "--vault-id",
+            "test@" + passFile.absolutePath,
+            encryptedFile.absolutePath
+        )
+
+        val process: Process = ProcessBuilder()
+            .command(command)
+            .redirectOutput(ProcessBuilder.Redirect.INHERIT)
+            .redirectError(ProcessBuilder.Redirect.INHERIT)
+            .start()
+        process.waitFor(10, TimeUnit.SECONDS)
+        val cliDecrypted = encryptedFile.readText()
+
+        assertEquals(0, process.exitValue())
+        assertEquals(data, cliDecrypted)
+    }
+
+    @Test(dataProvider = "dataProvider", threadPoolSize = 4)
     fun decrypt(data: String, password: String) {
         val tempDir = Files.createTempDirectory("")
         val dataFile: File = File.createTempFile("vault", ".yml", tempDir.toFile())
-        dataFile.writeBytes(data.toByteArray())
+        dataFile.writeText(data)
         val passFile = File.createTempFile("pass", ".txt", tempDir.toFile())
-        passFile.writeBytes(password.toByteArray())
+        passFile.writeText(password)
 
         val command = listOf(
             "ansible-vault",
             "encrypt",
             "--vault-password-file",
             passFile.absolutePath,
+            dataFile.absolutePath
+        )
+
+        val process: Process = ProcessBuilder()
+            .command(command)
+            .redirectOutput(ProcessBuilder.Redirect.INHERIT)
+            .redirectError(ProcessBuilder.Redirect.INHERIT)
+            .start()
+        process.waitFor(10, TimeUnit.SECONDS)
+        assertEquals(0, process.exitValue())
+        val cliEncrypted = dataFile.readText()
+
+        println("Decrypting Vault. Data length: ${data.length}, password length: ${password.length}")
+        val decrypted = String(VaultHandler.decrypt(cliEncrypted, password))
+
+        assertEquals(data, decrypted)
+    }
+
+    @Test(dataProvider = "dataProvider", threadPoolSize = 4)
+    fun decryptWithId(data: String, password: String) {
+        val tempDir = Files.createTempDirectory("")
+        val dataFile: File = File.createTempFile("vault", ".yml", tempDir.toFile())
+        dataFile.writeText(data)
+        val passFile = File.createTempFile("pass", ".txt", tempDir.toFile())
+        passFile.writeText(password)
+
+        val command = listOf(
+            "ansible-vault",
+            "encrypt",
+            "--vault-id",
+            "test@" + passFile.absolutePath,
             dataFile.absolutePath
         )
 
