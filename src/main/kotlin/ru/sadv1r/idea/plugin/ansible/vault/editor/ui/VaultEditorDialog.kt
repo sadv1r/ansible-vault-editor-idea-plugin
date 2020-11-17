@@ -48,9 +48,7 @@ class VaultEditorDialog(
 
     override fun doOKAction() {
         if (okAction.isEnabled) {
-            val encrypt = VaultHandler.encrypt(decryptedDocument.text.toByteArray(), String(password))
-
-            vault.setEncryptedData(encrypt.toString(Charsets.UTF_8))
+            vault.setEncryptedData(decryptedDocument.text.toByteArray(), password)
 
             close(OK_EXIT_CODE)
         }

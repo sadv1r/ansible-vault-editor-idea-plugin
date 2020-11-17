@@ -7,6 +7,7 @@ import org.jetbrains.yaml.YAMLFileType
 import org.jetbrains.yaml.psi.YAMLKeyValue
 import org.jetbrains.yaml.psi.YAMLScalarList
 import ru.sadv1r.ansible.vault.VaultHandler
+import ru.sadv1r.ansible.vault.crypto.VaultInfo
 
 class PropertyVault(
     private val document: Document,
@@ -33,5 +34,14 @@ class PropertyVault(
 
     override fun getFileType(): YAMLFileType {
         return YAMLFileType.YML
+    }
+
+    override fun getVaultId(): String? {
+        val valueText = property.valueText
+        val firstLineBreakIndex: Int = valueText.indexOf(VaultHandler.LINE_BREAK)
+
+        val infoLinePart: String = valueText.substring(0, firstLineBreakIndex)
+        val vaultInfo = VaultInfo(infoLinePart)
+        return vaultInfo.vaultId;
     }
 }

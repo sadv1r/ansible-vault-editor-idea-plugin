@@ -20,21 +20,21 @@ public class VaultHandler {
     }
 
     private static final String DEFAULT_CYPHER = CypherAES256.CYPHER_ID;
-    private static final String LINE_BREAK = "\n";
+    public static final String LINE_BREAK = "\n";
 
     public static byte[] encrypt(byte[] cleartext, String password) throws IOException {
-        return encrypt(cleartext, password, DEFAULT_CYPHER);
+        return encrypt(cleartext, password, null);
     }
 
-    public static byte[] encrypt(byte[] cleartext, String password, String cypher) throws IOException {
-        @NotNull Optional<Cypher> cypherInstance = CypherFactory.getCypher(cypher);
+    public static byte[] encrypt(byte[] cleartext, String password, String vaultId) throws IOException {
+        @NotNull Optional<Cypher> cypherInstance = CypherFactory.getCypher(DEFAULT_CYPHER);
         if (!cypherInstance.isPresent()) {
             throw new IOException("Unsupported vault cypher");
         }
 
         byte[] vaultData = cypherInstance.get().encrypt(cleartext, password);
         String vaultDataString = new String(vaultData);
-        String vaultPackage = cypherInstance.get().infoLine() + "\n" + vaultDataString;
+        String vaultPackage = cypherInstance.get().infoLine(vaultId) + "\n" + vaultDataString;
         return vaultPackage.getBytes();
     }
 

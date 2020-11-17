@@ -34,6 +34,14 @@ public class VaultHandlerTest {
     }
 
     @Test
+    public void decryptWithId() throws IOException {
+        InputStream encodedStream = getClass().getClassLoader().getResourceAsStream("test-vault-1.2.yml");
+        String encryptedValue = IOUtils.toString(encodedStream, StandardCharsets.UTF_8);
+        byte[] decrypt = VaultHandler.decrypt(encryptedValue, TEST_PASSWORD);
+        assertEquals(DECODED_VAULT, new String(decrypt).trim());
+    }
+
+    @Test
     public void decryptInvalidVault() throws IOException {
         exceptionRule.expect(IOException.class);
         exceptionRule.expectMessage("HMAC Digest doesn't match - possibly it's the wrong password.");

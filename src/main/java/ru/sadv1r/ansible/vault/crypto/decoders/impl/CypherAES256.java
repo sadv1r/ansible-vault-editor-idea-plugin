@@ -129,8 +129,8 @@ public class CypherAES256 implements Cypher {
         return decrypted;
     }
 
-    public String infoLine() {
-        return VaultInfo.vaultInfoForCypher(CYPHER_ID);
+    public String infoLine(String vaultId) {
+        return VaultInfo.vaultInfoForCypher(CYPHER_ID, vaultId);
     }
 
     public byte[] encrypt(byte[] data, String password) throws IOException {
