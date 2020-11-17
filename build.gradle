@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.6'
+version '1.7'
 
 repositories {
     mavenCentral()
@@ -67,6 +67,12 @@ Helps you create and edit Ansible Vaults
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.7"><b>v1.7</b></a> (2020-11-18)
+<br/>
+<ul>
+    <li>Support for Vault ID labels</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.6"><b>v1.6</b></a> (2020-08-08)
 <br/>
 <ul>
