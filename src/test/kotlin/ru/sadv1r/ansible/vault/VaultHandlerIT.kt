@@ -29,7 +29,7 @@ class VaultHandlerIT {
 
         testData.add(arrayOf(firstAttemptData, firstAttemptPassword))
 
-        for (i in (1..100)) {
+        for (i in (1..50)) {
             val data = (1..nextInt(1, 100_000))
                 .map { nextInt(0, charPool.size) }
                 .map(charPool::get)
