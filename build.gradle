@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.7'
+version '1.8'
 
 repositories {
     mavenCentral()
@@ -46,7 +46,7 @@ task integrationTest(type: Test) {
 
 patchPluginXml {
     sinceBuild 191.1
-    untilBuild "202.*"
+    untilBuild "203.*"
 
     pluginDescription """
 Helps you create and edit Ansible Vaults
@@ -67,6 +67,13 @@ Helps you create and edit Ansible Vaults
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.8"><b>v1.8</b></a> (2020-12-03)
+<br/>
+<ul>
+    <li>IntelliJ Platform 2020.3 support</li>
+    <li>Fixed null vault id labels when not set</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.7"><b>v1.7</b></a> (2020-11-18)
 <br/>
 <ul>

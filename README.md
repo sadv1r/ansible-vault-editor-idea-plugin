@@ -34,6 +34,11 @@ Usage
 Changelog
 ---------
 
+### [v1.8](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.8) (2020-12-03)
+
+* IntelliJ Platform 2020.3 support
+* Fixed null vault id labels when not set
+
 ### [v1.7](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.7) (2020-11-18)
 
 * Support for Vault ID labels
