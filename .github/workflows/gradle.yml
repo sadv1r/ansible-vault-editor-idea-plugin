@@ -29,6 +29,8 @@ jobs:
             ideaIU:2019.1
             ideaIC:2020.1
             ideaIU:2020.1
+            ideaIC:2020.3
+            ideaIU:2020.3
             ideaIC:LATEST-EAP-SNAPSHOT
             ideaIU:LATEST-EAP-SNAPSHOT
       - name: Notify to Telegram

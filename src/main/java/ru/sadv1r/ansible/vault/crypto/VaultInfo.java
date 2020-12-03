@@ -36,8 +36,11 @@ public class VaultInfo {
             joiner.add("1.2");
         }
 
-        joiner.add(vaultCypher)
-                .add(vaultId);
+        joiner.add(vaultCypher);
+
+        if (StringUtils.isNotEmpty(vaultId)) {
+            joiner.add(vaultId);
+        }
 
         return joiner.toString();
     }
