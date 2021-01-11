@@ -34,6 +34,10 @@ Usage
 Changelog
 ---------
 
+### [v1.9](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.9) (2021-01-11)
+
+* Fixed error on empty file vault creation
+
 ### [v1.8](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.8) (2020-12-03)
 
 * IntelliJ Platform 2020.3 support

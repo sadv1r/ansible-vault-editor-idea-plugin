@@ -67,6 +67,12 @@ Helps you create and edit Ansible Vaults
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.9"><b>v1.9</b></a> (2021-01-11)
+<br/>
+<ul>
+    <li>Fixed error on empty file vault creation</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.8"><b>v1.8</b></a> (2020-12-03)
 <br/>
 <ul>
