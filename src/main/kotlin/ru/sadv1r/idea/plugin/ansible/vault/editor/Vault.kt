@@ -2,6 +2,7 @@ package ru.sadv1r.idea.plugin.ansible.vault.editor
 
 import com.intellij.openapi.fileTypes.FileType
 import ru.sadv1r.ansible.vault.VaultHandler
+import ru.sadv1r.ansible.vault.crypto.VaultInfo
 
 abstract class Vault {
     abstract fun setEncryptedData(data: String)
@@ -22,5 +23,17 @@ abstract class Vault {
         setEncryptedData(encrypt.toString(Charsets.UTF_8))
     }
 
-    abstract fun getVaultId(): String?
+    private fun getVaultId(): String? {
+        val valueText = getText()
+        val firstLineBreakIndex: Int = valueText.indexOf(VaultHandler.LINE_BREAK)
+        if (firstLineBreakIndex == -1) {
+            return null
+        }
+
+        val infoLinePart: String = valueText.substring(0, firstLineBreakIndex)
+        val vaultInfo = VaultInfo(infoLinePart)
+        return vaultInfo.vaultId
+    }
+
+    abstract fun getText(): String
 }
