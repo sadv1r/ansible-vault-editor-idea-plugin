@@ -79,3 +79,6 @@ Changelog
 
 * Initial release of the plugin
 * Basic editor for encrypted YML files
+
+
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/v2/default-green.png)](https://www.buymeacoffee.com/sadv1r)
