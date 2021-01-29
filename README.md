@@ -34,6 +34,10 @@ Usage
 Changelog
 ---------
 
+### [v1.10](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.10) (2021-01-29)
+
+* Support 2021.1 platform
+
 ### [v1.9](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.9) (2021-01-11)
 
 * Fixed error on empty file vault creation
