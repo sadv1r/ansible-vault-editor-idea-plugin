@@ -20,7 +20,7 @@ class VaultHandlerIT {
                     """.trimIndent()
     private val firstAttemptPassword = "password"
 
-    private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') +
+    private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('а'..'я') + ('А'..'Я') + ('0'..'9') +
             '\\' + '/' + ':' + '-' + '_' + '.' + ' '
 
     @DataProvider(parallel = true)

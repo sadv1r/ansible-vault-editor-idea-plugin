@@ -34,9 +34,11 @@ Usage
 Changelog
 ---------
 
-### [v1.10](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.10) (2021-01-29)
+### [v1.11](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.11) (2021-02-03)
 
-* Support 2021.1 platform
+* Using Bouncy Castle bundled with IntelliJ
+* IntelliJ Platform 2021.1 support
+* Reduced plugin size
 
 ### [v1.9](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.9) (2021-01-11)
 
