@@ -25,7 +25,7 @@
         <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
                 class="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
                 text="Ansible Vault Editor"
-                icon="AnsibleVaultEditorIcons.ANSIBLE_ICON">
+                icon="AnsibleVaultEditorIcons.ansible">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
     </actions>

@@ -1,13 +1,13 @@
 package ru.sadv1r.idea.plugin.ansible.vault;
 
 import com.intellij.codeInsight.intention.IntentionAction;
-import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public abstract class LightAnsibleVaultCodeInsightTestCase extends LightPlatformCodeInsightFixtureTestCase {
+public abstract class LightAnsibleVaultCodeInsightTestCase extends BasePlatformTestCase {
 
     protected abstract String getDataPath();
 

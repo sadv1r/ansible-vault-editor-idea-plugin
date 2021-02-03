@@ -7,7 +7,6 @@ import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.fileTypes.UnknownFileType
 import com.intellij.openapi.ui.DialogWrapper
-import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
 import java.awt.BorderLayout
 import javax.swing.JComponent
@@ -20,7 +19,7 @@ class VaultEditorDialog(
     private val vault: Vault
 ) : DialogWrapper(true) {
 
-    lateinit var decryptedDocument: Document
+    private lateinit var decryptedDocument: Document
 
     init {
         init()
