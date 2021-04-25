@@ -34,6 +34,10 @@ task integrationTest(type: Test) {
     useTestNG()
 }
 
+publishPlugin {
+    token = System.getenv("JETBRAINS_PUBLISH_TOKEN")
+}
+
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     plugins = ['yaml']
