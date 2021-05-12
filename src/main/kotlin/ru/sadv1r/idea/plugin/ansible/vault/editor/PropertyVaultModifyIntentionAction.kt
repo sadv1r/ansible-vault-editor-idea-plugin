@@ -15,11 +15,11 @@ import java.io.IOException
 class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
 
     override fun getText(): String {
-        return "Modify Vault Value"
+        return "Modify vault value"
     }
 
     override fun getFamilyName(): String {
-        return "Ansible Vault"
+        return text
     }
 
     override fun startInWriteAction(): Boolean {

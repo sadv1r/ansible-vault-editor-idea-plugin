@@ -11,7 +11,7 @@ public class PropertyVaultModifyIntentionActionTest extends LightAnsibleVaultCod
 
     @Override
     protected String intentionName() {
-        return "Modify Vault Value";
+        return "Modify vault value";
     }
 
     public void test() {
