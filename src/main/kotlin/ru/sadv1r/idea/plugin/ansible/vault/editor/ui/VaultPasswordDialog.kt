@@ -23,7 +23,7 @@ class VaultPasswordDialog(
         init()
     }
 
-    override fun createCenterPanel(): JComponent? {
+    override fun createCenterPanel(): JComponent {
         val dialogPanel = JPanel()
         val boxLayout = BoxLayout(dialogPanel, BoxLayout.Y_AXIS)
 
@@ -49,7 +49,7 @@ class VaultPasswordDialog(
         return dialogPanel
     }
 
-    override fun getPreferredFocusedComponent(): JComponent? {
+    override fun getPreferredFocusedComponent(): JComponent {
         return pass
     }
 

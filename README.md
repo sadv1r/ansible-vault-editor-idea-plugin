@@ -20,6 +20,7 @@ Features
 * Encrypted [YAML properties](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml) modification
 * Decrypted files syntax highlighting
 * Possibility to remember vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html)
+* Re-encrypt vault with new password
 
 
 Usage
@@ -34,6 +35,11 @@ Usage
 
 Changelog
 ---------
+
+### [v1.12](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.12) (2021-05-13)
+
+* Possibility to change Vault password
+* Intentions family names changed to add possibility to disable them separately
 
 ### [v1.11](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.11) (2021-02-03)
 

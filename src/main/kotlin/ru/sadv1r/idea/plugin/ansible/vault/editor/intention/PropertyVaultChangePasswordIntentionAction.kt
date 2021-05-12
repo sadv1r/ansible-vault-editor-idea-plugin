@@ -1,4 +1,4 @@
-package ru.sadv1r.idea.plugin.ansible.vault.editor
+package ru.sadv1r.idea.plugin.ansible.vault.editor.intention
 
 import com.intellij.codeInsight.intention.IntentionAction
 import com.intellij.codeInsight.intention.PsiElementBaseIntentionAction
@@ -8,14 +8,13 @@ import com.intellij.psi.PsiElement
 import org.jetbrains.yaml.psi.YAMLKeyValue
 import org.jetbrains.yaml.psi.YAMLScalarList
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
-import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
-import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
-import java.io.IOException
+import ru.sadv1r.idea.plugin.ansible.vault.editor.PropertyVault
+import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultChangePasswordDialog
 
-class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
+class PropertyVaultChangePasswordIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
 
     override fun getText(): String {
-        return "Modify vault value"
+        return "Change vault value password"
     }
 
     override fun getFamilyName(): String {
@@ -38,20 +37,7 @@ class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), Inte
         val property: YAMLKeyValue = element.parent?.parent as? YAMLKeyValue ?: return
         val vault = PropertyVault(document, property)
 
-        val password = getPassword(vault)
-        if (password == null) {
-            VaultPasswordDialog(vault).showAndGet()
-        } else {
-            try {
-                VaultEditorDialog(
-                    vault.getDecryptedData(password),
-                    password.toCharArray(),
-                    vault
-                ).showAndGet()
-            } catch (e: IOException) {
-                removePassword(vault)
-                VaultPasswordDialog(vault).showAndGet()
-            }
-        }
+        VaultChangePasswordDialog(vault).showAndGet()
     }
+
 }
