@@ -2,11 +2,11 @@ package ru.sadv1r.idea.plugin.ansible.vault.editor;
 
 import ru.sadv1r.idea.plugin.ansible.vault.LightAnsibleVaultCodeInsightTestCase;
 
-public class VaultModifyIntentionActionTest extends LightAnsibleVaultCodeInsightTestCase {
+public class FileVaultModifyIntentionActionTest extends LightAnsibleVaultCodeInsightTestCase {
 
     @Override
     protected String getDataPath() {
-        return "vaultModifyIntentionAction";
+        return "fileVaultModifyIntentionAction";
     }
 
     @Override

@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.6.5'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.21'
+    id 'org.jetbrains.intellij' version '0.7.3'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
 }
 
 group 'ru.sadv1r'
-version '1.11'
+version '1.12'
 
 repositories {
     mavenCentral()
@@ -65,6 +65,13 @@ Helps you create and edit Ansible Vaults
 """
 
     changeNotes """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.12"><b>v1.12</b></a> (2021-05-13)
+<br/>
+<ul>
+    <li>Possibility to change Vault password</li>
+    <li>Intentions family names changed to add possibility to disable them separately</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.11"><b>v1.11</b></a> (2021-02-03)
 <br/>
 <ul>

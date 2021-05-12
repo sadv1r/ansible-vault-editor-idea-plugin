@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>ru.sadv1r.ansible-vault-editor-idea-plugin</id>
     <name>Ansible Vault Editor</name>
-    <vendor email="sadv12@gmail.com" url="http://sadv1r.ru">Sadv1r</vendor>
+    <vendor email="sadv12@gmail.com" url="https://sadv1r.ru">Sadv1r</vendor>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -11,12 +11,22 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <intentionAction>
-            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyIntentionAction</className>
-            <category>Ansible</category>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.FileVaultModifyIntentionAction</className>
+            <category>Ansible vault</category>
         </intentionAction>
         <intentionAction>
-            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.PropertyVaultModifyIntentionAction</className>
-            <category>Ansible</category>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.PropertyVaultModifyIntentionAction</className>
+            <category>Ansible vault</category>
+        </intentionAction>
+        <intentionAction>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.VaultChangePasswordIntentionAction</className>
+            <category>Ansible vault</category>
+            <descriptionDirectoryName>VaultChangePasswordIntentionAction</descriptionDirectoryName>
+        </intentionAction>
+        <intentionAction>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.PropertyVaultChangePasswordIntentionAction</className>
+            <category>Ansible vault</category>
+            <descriptionDirectoryName>VaultChangePasswordIntentionAction</descriptionDirectoryName>
         </intentionAction>
     </extensions>
 

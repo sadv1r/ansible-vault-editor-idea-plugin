@@ -27,7 +27,7 @@ class VaultEditorDialog(
         setOKButtonText("Encrypt and Replace")
     }
 
-    override fun createCenterPanel(): JComponent? {
+    override fun createCenterPanel(): JComponent {
         val editorFactory = EditorFactory.getInstance()
 
         decryptedDocument = editorFactory.createDocument(
