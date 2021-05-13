@@ -20,6 +20,7 @@ class VaultEditorDialog(
 ) : DialogWrapper(true) {
 
     private lateinit var decryptedDocument: Document
+    private lateinit var editor: EditorEx
 
     init {
         init()
@@ -34,7 +35,7 @@ class VaultEditorDialog(
             decryptedDocumentData.toString(Charsets.UTF_8).trim().replace("\r\n|\r".toRegex(), "\n")
         )
         decryptedDocument.setReadOnly(false)
-        val editor: EditorEx = editorFactory.createEditor(decryptedDocument) as EditorEx
+        editor = editorFactory.createEditor(decryptedDocument) as EditorEx
 
         setHighlighting(editor)
         editor.setCaretEnabled(true)
@@ -51,6 +52,12 @@ class VaultEditorDialog(
 
             close(OK_EXIT_CODE)
         }
+    }
+
+    override fun dispose() {
+        EditorFactory.getInstance().releaseEditor(editor)
+
+        super.dispose()
     }
 
     private fun setHighlighting(editor: EditorEx) {
