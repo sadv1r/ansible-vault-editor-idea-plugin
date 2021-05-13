@@ -19,7 +19,7 @@
             <category>Ansible vault</category>
         </intentionAction>
         <intentionAction>
-            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.VaultChangePasswordIntentionAction</className>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.FileVaultChangePasswordIntentionAction</className>
             <category>Ansible vault</category>
             <descriptionDirectoryName>VaultChangePasswordIntentionAction</descriptionDirectoryName>
         </intentionAction>

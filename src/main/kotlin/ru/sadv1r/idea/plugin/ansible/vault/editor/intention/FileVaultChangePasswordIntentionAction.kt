@@ -9,7 +9,7 @@ import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.FileVault
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultChangePasswordDialog
 
-class VaultChangePasswordIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
+class FileVaultChangePasswordIntentionAction : PsiElementBaseIntentionAction(), IntentionAction {
 
     override fun getText(): String {
         return "Change vault password"
