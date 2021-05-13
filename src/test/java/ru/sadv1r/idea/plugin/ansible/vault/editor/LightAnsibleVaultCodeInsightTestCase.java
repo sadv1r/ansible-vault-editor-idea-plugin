@@ -1,4 +1,4 @@
-package ru.sadv1r.idea.plugin.ansible.vault;
+package ru.sadv1r.idea.plugin.ansible.vault.editor;
 
 import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;

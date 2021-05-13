@@ -1,6 +1,6 @@
-package ru.sadv1r.idea.plugin.ansible.vault.editor;
+package ru.sadv1r.idea.plugin.ansible.vault.editor.intention;
 
-import ru.sadv1r.idea.plugin.ansible.vault.LightAnsibleVaultCodeInsightTestCase;
+import ru.sadv1r.idea.plugin.ansible.vault.editor.LightAnsibleVaultCodeInsightTestCase;
 
 public class FileVaultModifyIntentionActionTest extends LightAnsibleVaultCodeInsightTestCase {
 
