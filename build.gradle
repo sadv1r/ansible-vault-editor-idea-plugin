@@ -59,8 +59,9 @@ Helps you create and edit Ansible Vaults
     <li>Create vault in empty file</li>
     <li>Edit existing vault with auto encryption and decryption</li>
     <li>Encrypted <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml">YAML properties</a> modification</li>
-    <li>Decrypted yml files syntax highlight</li>
+    <li>Decrypted files syntax highlight</li>
     <li>Remember vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a></li>
+    <li>Re-encrypt vault with new password</li>
 </ul>
 """
 

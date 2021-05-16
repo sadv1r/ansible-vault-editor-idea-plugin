@@ -28,6 +28,11 @@
             <category>Ansible vault</category>
             <descriptionDirectoryName>VaultChangePasswordIntentionAction</descriptionDirectoryName>
         </intentionAction>
+
+        <codeInsight.lineMarkerProvider language=""
+                                        implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.gutter.FileVaultLineMarkerProvider"/>
+        <codeInsight.lineMarkerProvider language="yaml"
+                                        implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.gutter.PropertyVaultLineMarkerProvider"/>
     </extensions>
 
     <actions>

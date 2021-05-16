@@ -8,11 +8,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.FileVault
-import ru.sadv1r.idea.plugin.ansible.vault.editor.getPassword
-import ru.sadv1r.idea.plugin.ansible.vault.editor.removePassword
-import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
-import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
-import java.io.IOException
 
 class FileVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction, PriorityAction {
 
@@ -40,21 +35,7 @@ class FileVaultModifyIntentionAction : PsiElementBaseIntentionAction(), Intentio
         val document = editor?.document ?: return
         val vault = FileVault(document)
 
-        val password = getPassword(vault)
-        if (password == null) {
-            VaultPasswordDialog(vault).showAndGet()
-        } else {
-            try {
-                VaultEditorDialog(
-                    vault.getDecryptedData(password),
-                    password.toCharArray(),
-                    vault
-                ).showAndGet()
-            } catch (e: IOException) {
-                removePassword(vault)
-                VaultPasswordDialog(vault).showAndGet()
-            }
-        }
+        vault.openEditor()
     }
 
     override fun getPriority() = PriorityAction.Priority.HIGH

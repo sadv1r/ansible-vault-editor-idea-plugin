@@ -19,7 +19,7 @@ Features
 * Edit existing vault with auto encryption and decryption
 * Encrypted [YAML properties](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml) modification
 * Decrypted files syntax highlighting
-* Possibility to remember vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html)
+* Remember vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html)
 * Re-encrypt vault with new password
 
 

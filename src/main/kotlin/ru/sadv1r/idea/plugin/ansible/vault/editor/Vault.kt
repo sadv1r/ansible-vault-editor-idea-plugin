@@ -3,6 +3,9 @@ package ru.sadv1r.idea.plugin.ansible.vault.editor
 import com.intellij.openapi.fileTypes.FileType
 import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
+import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
+import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
+import java.io.IOException
 
 abstract class Vault {
     abstract fun setEncryptedData(data: String)
@@ -36,4 +39,22 @@ abstract class Vault {
     }
 
     abstract fun getText(): String
+
+    fun openEditor() {
+        val password = getPassword(this)
+        if (password == null) {
+            VaultPasswordDialog(this).showAndGet()
+        } else {
+            try {
+                VaultEditorDialog(
+                    getDecryptedData(password),
+                    password.toCharArray(),
+                    this
+                ).showAndGet()
+            } catch (e: IOException) {
+                removePassword(this)
+                VaultPasswordDialog(this).showAndGet()
+            }
+        }
+    }
 }
