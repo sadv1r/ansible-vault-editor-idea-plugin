@@ -10,11 +10,6 @@ import org.jetbrains.yaml.psi.YAMLKeyValue
 import org.jetbrains.yaml.psi.YAMLScalarList
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.PropertyVault
-import ru.sadv1r.idea.plugin.ansible.vault.editor.getPassword
-import ru.sadv1r.idea.plugin.ansible.vault.editor.removePassword
-import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
-import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
-import java.io.IOException
 
 class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), IntentionAction, PriorityAction {
 
@@ -42,21 +37,7 @@ class PropertyVaultModifyIntentionAction : PsiElementBaseIntentionAction(), Inte
         val property: YAMLKeyValue = element.parent?.parent as? YAMLKeyValue ?: return
         val vault = PropertyVault(document, property)
 
-        val password = getPassword(vault)
-        if (password == null) {
-            VaultPasswordDialog(vault).showAndGet()
-        } else {
-            try {
-                VaultEditorDialog(
-                    vault.getDecryptedData(password),
-                    password.toCharArray(),
-                    vault
-                ).showAndGet()
-            } catch (e: IOException) {
-                removePassword(vault)
-                VaultPasswordDialog(vault).showAndGet()
-            }
-        }
+        vault.openEditor()
     }
 
     override fun getPriority() = PriorityAction.Priority.HIGH
