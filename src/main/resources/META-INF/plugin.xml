@@ -56,5 +56,9 @@
                 icon="AnsibleVaultEditorIcons.ansible">
             <add-to-group group-id="AnsibleVault" anchor="after" relative-to-action="ru.sadv1r.idea.plugin.ansible.vault.editor.action.FileEncryptAction"/>
         </action>
+        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.CreateFileVaultAction"
+                class="ru.sadv1r.idea.plugin.ansible.vault.editor.CreateFileVaultAction">
+            <add-to-group group-id="NewGroup"/>
+        </action>
     </actions>
 </idea-plugin>
