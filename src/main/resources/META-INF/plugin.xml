@@ -11,6 +11,10 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <intentionAction>
+            <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.PropertyVaultCreateIntentionAction</className>
+            <category>Ansible vault</category>
+        </intentionAction>
+        <intentionAction>
             <className>ru.sadv1r.idea.plugin.ansible.vault.editor.intention.FileVaultModifyIntentionAction</className>
             <category>Ansible vault</category>
         </intentionAction>
