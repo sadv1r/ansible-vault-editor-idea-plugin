@@ -18,6 +18,7 @@ Features
 * Create vault in empty file
 * Edit existing vault with auto encryption and decryption
 * Encrypted [YAML properties](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml) modification
+* Existing YAML properties encryption
 * Decrypted files syntax highlighting
 * Remember vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html)
 * Re-encrypt vault with new password
@@ -35,6 +36,11 @@ Usage
 
 Changelog
 ---------
+
+### [v1.13](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.13) (2021-05-25)
+
+* Possibility to encrypt existing yaml value
+* Vault [gutter](https://www.jetbrains.com/help/idea/settings-gutter-icons.html) icons added with modify action on click
 
 ### [v1.12](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.12) (2021-05-13)
 

@@ -1,6 +1,5 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor;
 
-import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
 import java.io.File;
@@ -19,8 +18,7 @@ public abstract class LightAnsibleVaultCodeInsightTestCase extends BasePlatformT
 
     public void doTestFor(String fileName, String intentionName) {
         myFixture.configureByFile(fileName);
-        IntentionAction modifyVaultIntention = myFixture.findSingleIntention(intentionName);
-        assertNotNull(modifyVaultIntention);
+        myFixture.findSingleIntention(intentionName);
     }
 
     private Stream<String> getTestFiles() {

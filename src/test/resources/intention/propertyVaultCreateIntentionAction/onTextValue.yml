@@ -1,0 +1,9 @@
+lal: fds
+
+the_secret: super<caret> secret password
+
+test: ha
+
+da:
+  - da
+  - нет
