@@ -28,6 +28,9 @@ abstract class Vault {
 
     private fun getVaultId(): String? {
         val valueText = getText()
+        if (!valueText.startsWith(VaultInfo.MAGIC_PART_DATA)) {
+            return null
+        }
         val firstLineBreakIndex: Int = valueText.indexOf(VaultHandler.LINE_BREAK)
         if (firstLineBreakIndex == -1) {
             return null

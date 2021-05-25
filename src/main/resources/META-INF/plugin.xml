@@ -41,11 +41,20 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
-                class="ru.sadv1r.idea.plugin.ansible.vault.editor.VaultModifyAction"
-                text="Ansible Vault Editor"
-                icon="AnsibleVaultEditorIcons.ansible">
+        <group id="AnsibleVault">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </group>
+        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.action.FileEncryptAction"
+                class="ru.sadv1r.idea.plugin.ansible.vault.editor.action.FileEncryptAction"
+                text="Encrypt File as Ansible Vault"
+                icon="AnsibleVaultEditorIcons.ansible">
+            <add-to-group group-id="AnsibleVault" anchor="first"/>
+        </action>
+        <action id="ru.sadv1r.idea.plugin.ansible.vault.editor.action.OpenEditorAction"
+                class="ru.sadv1r.idea.plugin.ansible.vault.editor.action.OpenEditorAction"
+                text="Open Ansible Vault Editor"
+                icon="AnsibleVaultEditorIcons.ansible">
+            <add-to-group group-id="AnsibleVault" anchor="after" relative-to-action="ru.sadv1r.idea.plugin.ansible.vault.editor.action.FileEncryptAction"/>
         </action>
     </actions>
 </idea-plugin>
