@@ -1,6 +1,7 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor.ui
 
 import com.intellij.openapi.ui.DialogWrapper
+import com.intellij.openapi.ui.ValidationInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
 import ru.sadv1r.idea.plugin.ansible.vault.editor.savePassword
 import java.awt.BorderLayout
@@ -42,6 +43,14 @@ class CreatePropertyVaultPasswordDialog(
 
     override fun getPreferredFocusedComponent(): JComponent {
         return pass
+    }
+
+    override fun doValidate(): ValidationInfo? {
+        if (pass.password.isEmpty()) {
+            return ValidationInfo("Need to provide password", pass)
+        }
+
+        return super.doValidate()
     }
 
     override fun doOKAction() {
