@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 11
+      - name: Setup Java
         uses: actions/setup-java@v2.1.0
         with:
-          distribution: 'zulu'
-          java-version: 11
+          distribution: zulu
+          java-version: 8
       - name: Build with Gradle
         run: ./gradlew build
       - name: Test generated vaults with official CLI tool
@@ -30,8 +30,6 @@ jobs:
             ideaIU:2019.1
             ideaIC:2020.1
             ideaIU:2020.1
-            ideaIC:2020.3
-            ideaIU:2020.3
             ideaIC:2021.1
             ideaIU:2021.1
             ideaIC:LATEST-EAP-SNAPSHOT
