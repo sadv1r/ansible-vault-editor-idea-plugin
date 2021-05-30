@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile('de.rtner:PBKDF2:1.1.2') {
+    implementation('de.rtner:PBKDF2:1.1.2') {
         exclude group: 'org.picketbox', module: 'picketbox'
     }
 
@@ -24,7 +24,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     plugins = ['yaml']
-    version '2020.1'
+    version '2020.2'
     pluginName 'Ansible Vault Editor'
 }
 
