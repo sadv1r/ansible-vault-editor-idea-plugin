@@ -37,6 +37,12 @@
                                         implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.gutter.FileVaultLineMarkerProvider"/>
         <codeInsight.lineMarkerProvider language="yaml"
                                         implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.gutter.PropertyVaultLineMarkerProvider"/>
+
+        <applicationService serviceImplementation="ru.sadv1r.idea.plugin.ansible.vault.editor.config.AnsibleVaultEditorSettings"/>
+        <projectConfigurable displayName="Ansible Vault Editor" instance="ru.sadv1r.idea.plugin.ansible.vault.editor.config.VaultPanelConfigurable"/>
+
+        <lang.foldingBuilder language="yaml" order="first" implementationClass="ru.sadv1r.idea.plugin.ansible.vault.editor.folding.PropertyVaultFoldingBuilder"/>
+        <editorNotificationProvider implementation="ru.sadv1r.idea.plugin.ansible.vault.editor.folding.PropertyVaultFoldingPromo" order="first"/>
     </extensions>
 
     <actions>
