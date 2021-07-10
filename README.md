@@ -35,6 +35,10 @@ Usage
 Changelog
 ---------
 
+### [v1.15](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.15) (2021-07-10)
+
+* IntelliJ Platform 2021.2 support
+
 ### [v1.14](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.14) (2021-06-01)
 
 * Possibility to encrypt any existing file
