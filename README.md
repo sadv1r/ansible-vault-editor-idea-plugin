@@ -18,7 +18,7 @@ Features
 * Encrypt [file as Ansible Vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-files-with-ansible-vault)
 * Encrypt [individual YAML property](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-individual-variables-with-ansible-vault)
 * Modify existing Vault with auto encryption/decryption and protection from accidental pushing of sensitive data
-* Remember vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html)
+* Remember each vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html) or use [ANSIBLE_VAULT_PASSWORD_FILE](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE) variable
 * Re-encrypt vault with new password
 
 
@@ -35,9 +35,10 @@ Usage
 Changelog
 ---------
 
-### [v1.15](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.15) (2021-07-10)
+### [v1.15](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.15) (2021-07-12)
 
 * IntelliJ Platform 2021.2 support
+* [ANSIBLE_VAULT_PASSWORD_FILE](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE) environment variable support
 
 ### [v1.14](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.14) (2021-06-01)
 
