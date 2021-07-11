@@ -23,7 +23,7 @@ jobs:
       - name: Test generated vaults with official CLI tool
         run: ./gradlew integrationTest
       - name: Verify IDEA compatibility
-        uses: sadv1r/intellij-platform-plugin-verifier-action@#21-java-version-update
+        uses: sadv1r/intellij-platform-plugin-verifier-action@#21-failed
         with:
           ide-versions: |
             ideaIC:2019.1
