@@ -60,9 +60,11 @@ abstract class Vault {
 
     private fun tryWithDefaultOrAsk() {
         val defaultPasswordFile = System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
+
         if (defaultPasswordFile != null) {
+            val defaultPasswordFileWithoutTilda = expandTilda(defaultPasswordFile)
             try {
-                val defaultPassword = File(defaultPasswordFile).readText(Charsets.UTF_8)
+                val defaultPassword = File(defaultPasswordFileWithoutTilda).readText(Charsets.UTF_8)
                 tryOpen(defaultPassword)
             } catch (e: IOException) {
                 VaultPasswordDialog(this).showAndGet()
@@ -70,6 +72,14 @@ abstract class Vault {
         } else {
             VaultPasswordDialog(this).showAndGet()
         }
+    }
+
+    private fun expandTilda(path: String): String {
+        if (path.startsWith("~" + File.separator)) {
+            return System.getProperty("user.home") + path.substring(1)
+        }
+
+        return path
     }
 
     private fun tryOpen(password: String) {
