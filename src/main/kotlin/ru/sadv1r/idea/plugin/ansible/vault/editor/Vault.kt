@@ -5,6 +5,7 @@ import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
+import java.io.File
 import java.io.IOException
 
 abstract class Vault {
@@ -45,19 +46,37 @@ abstract class Vault {
 
     fun openEditor() {
         val password = getPassword(this)
-        if (password == null) {
-            VaultPasswordDialog(this).showAndGet()
-        } else {
+        if (password != null) {
             try {
-                VaultEditorDialog(
-                    getDecryptedData(password),
-                    password.toCharArray(),
-                    this
-                ).showAndGet()
+                tryOpen(password)
             } catch (e: IOException) {
                 removePassword(this)
+                tryWithDefaultOrAsk()
+            }
+        } else {
+            tryWithDefaultOrAsk()
+        }
+    }
+
+    private fun tryWithDefaultOrAsk() {
+        val defaultPasswordFile = System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
+        if (defaultPasswordFile != null) {
+            try {
+                val defaultPassword = File(defaultPasswordFile).readText(Charsets.UTF_8)
+                tryOpen(defaultPassword)
+            } catch (e: IOException) {
                 VaultPasswordDialog(this).showAndGet()
             }
+        } else {
+            VaultPasswordDialog(this).showAndGet()
         }
+    }
+
+    private fun tryOpen(password: String) {
+        VaultEditorDialog(
+            getDecryptedData(password),
+            password.toCharArray(),
+            this
+        ).showAndGet()
     }
 }
