@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v2.1.0
         with:
           distribution: zulu
-          java-version: 8
+          java-version: 11
       - name: Build with Gradle
         run: ./gradlew build
       - name: Test generated vaults with official CLI tool
