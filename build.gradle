@@ -37,7 +37,7 @@ task integrationTest(type: Test) {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     plugins = ['yaml']
-    version = '2020.2'
+    version = '2020.3'
     pluginName = 'Ansible Vault Editor'
 }
 
