@@ -16,6 +16,7 @@ jobs:
         with:
           distribution: zulu
           java-version: 11
+          cache: 'gradle'
       - name: Build with Gradle
         run: ./gradlew build
       - name: Verify IDEA compatibility
