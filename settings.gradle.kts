@@ -1,0 +1,1 @@
+rootProject.name = "Ansible Vault Editor IntelliJ Plugin"

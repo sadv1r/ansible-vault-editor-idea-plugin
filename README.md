@@ -6,7 +6,7 @@
 [![JetBrains plugin](https://img.shields.io/jetbrains/plugin/v/14278-ansible-vault-editor?label=version)](https://plugins.jetbrains.com/plugin/14278-ansible-vault-editor)
 [![JetBrains plugin rating](https://img.shields.io/jetbrains/plugin/r/rating/14278-ansible-vault-editor)](https://plugins.jetbrains.com/plugin/14278-ansible-vault-editor/reviews)
 
-
+<!-- Plugin description -->
 Ansible Vault Editor is an IntelliJ IDEA plugin that helps you edit Ansible® Vaults, preventing accidental push of decrypted confidential data
 
 <img src="https://img.sadv1r.ru/ansible-editor-idea-plugin-password-pompt.png" alt="Vault editor password prompt window" width="47%"/> <img src="https://img.sadv1r.ru/ansible-editor-idea-plugin-editor.png" alt="Vault editor window" width="50%"/>
@@ -20,7 +20,7 @@ Features
 * Modify existing Vault with auto encryption/decryption and protection from accidental pushing of sensitive data
 * Remember each vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html) or use [ANSIBLE_VAULT_PASSWORD_FILE](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE) variable
 * Re-encrypt vault with new password
-
+<!-- Plugin description end -->
 
 Usage
 -----
