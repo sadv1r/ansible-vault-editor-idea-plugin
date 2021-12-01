@@ -5,8 +5,11 @@ import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
+import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
+import java.io.InputStreamReader
+import java.util.concurrent.TimeUnit
 
 abstract class Vault {
     abstract fun setEncryptedData(data: String)
@@ -64,9 +67,19 @@ abstract class Vault {
         if (defaultPasswordFile != null) {
             val defaultPasswordFileWithoutTilda = expandTilda(defaultPasswordFile)
             try {
-                val defaultPassword = File(defaultPasswordFileWithoutTilda).readText(Charsets.UTF_8)
-                tryOpen(defaultPassword)
-            } catch (e: IOException) {
+                val file = File(defaultPasswordFileWithoutTilda)
+
+                val defaultPassword = if (file.canExecute()) {
+                    val process = Runtime.getRuntime().exec(file.absolutePath)
+                    process.waitFor(10, TimeUnit.SECONDS)
+                    val reader = BufferedReader(InputStreamReader(process.inputStream, Charsets.UTF_8))
+                    reader.readText()
+                } else {
+                    file.readText(Charsets.UTF_8)
+                }
+
+                tryOpen(defaultPassword.trim())
+            } catch (e: Exception) {
                 VaultPasswordDialog(this).showAndGet()
             }
         } else {
