@@ -34,6 +34,9 @@ Usage
 
 Changelog
 ---------
+### [v1.16](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.16) (2021-12-01)
+
+* IntelliJ Platform 2021.3 support
 
 ### [v1.15](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.15) (2021-07-12)
 
