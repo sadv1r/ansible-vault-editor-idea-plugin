@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.16'
+version '1.17'
 
 repositories {
     mavenCentral()
@@ -39,11 +39,11 @@ intellij {
     plugins = ['yaml']
     version = '2020.2'
     pluginName = 'Ansible Vault Editor'
+    updateSinceUntilBuild = false
 }
 
 patchPluginXml {
     sinceBuild = "191.1"
-    untilBuild = "213.*"
 
     pluginDescription = """
 Helps you create and edit Ansible Vaults
@@ -64,6 +64,13 @@ Helps you create and edit Ansible Vaults
 """
 
     changeNotes = """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.17"><b>v1.17</b></a> (2021-12-03)
+<br/>
+<ul>
+    <li>Possibility to use <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#storing-passwords-in-third-party-tools-with-vault-password-client-scripts">client script</a> in <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE">ANSIBLE_VAULT_PASSWORD_FILE</a> variable</li>
+    <li>Removed strict upper boundary for supported IntelliJ Platform version</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.16"><b>v1.16</b></a> (2021-12-01)
 <br/>
 <ul>

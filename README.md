@@ -34,6 +34,11 @@ Usage
 
 Changelog
 ---------
+### [v1.17](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.17) (2021-12-03)
+
+* Possibility to use <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#storing-passwords-in-third-party-tools-with-vault-password-client-scripts">client script</a> in <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE">ANSIBLE_VAULT_PASSWORD_FILE</a> variable
+* Removed strict upper boundary for supported IntelliJ Platform version
+
 ### [v1.16](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.16) (2021-12-01)
 
 * IntelliJ Platform 2021.3 support
