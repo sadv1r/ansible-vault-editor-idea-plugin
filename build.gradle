@@ -20,12 +20,12 @@ dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test-testng'
 }
 
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
+
 test {
     useJUnit()
 }
@@ -36,12 +36,13 @@ task integrationTest(type: Test) {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     plugins = ['yaml']
-    version = '2020.2'
+    version = '2021.3'
     pluginName = 'Ansible Vault Editor'
     updateSinceUntilBuild = false
 }
 
 patchPluginXml {
+    //https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
     sinceBuild = "191.1"
 
     pluginDescription = """
