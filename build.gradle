@@ -18,6 +18,7 @@ dependencies {
 
     testImplementation "org.jetbrains.kotlin:kotlin-test"
     testImplementation 'org.jetbrains.kotlin:kotlin-test-testng'
+    testImplementation 'com.github.stefanbirkner:system-lambda:1.2.1'
 }
 
 kotlin {
