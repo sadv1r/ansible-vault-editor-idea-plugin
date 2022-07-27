@@ -18,7 +18,7 @@ Features
 * Encrypt [file as Ansible Vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-files-with-ansible-vault)
 * Encrypt [individual YAML property](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-individual-variables-with-ansible-vault)
 * Modify existing Vault with auto encryption/decryption and protection from accidental pushing of sensitive data
-* Remember each vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html) or use [ANSIBLE_VAULT_PASSWORD_FILE](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE) variable
+* Remember each vault [password](https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html) or use [DEFAULT_VAULT_PASSWORD_FILE](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file) configuration
 * Re-encrypt vault with new password
 
 
@@ -34,9 +34,13 @@ Usage
 
 Changelog
 ---------
+### [v1.18](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.18) (2022-06-27)
+
+* Possibility to get [default vault password file](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file) path from [Ansible Config](https://docs.ansible.com/ansible/latest/reference_appendices/config.html) file
+
 ### [v1.17](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.17) (2021-12-03)
 
-* Possibility to use <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#storing-passwords-in-third-party-tools-with-vault-password-client-scripts">client script</a> in <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE">ANSIBLE_VAULT_PASSWORD_FILE</a> variable
+* Possibility to use [client script](https://docs.ansible.com/ansible/latest/user_guide/vault.html#storing-passwords-in-third-party-tools-with-vault-password-client-scripts) in [ANSIBLE_VAULT_PASSWORD_FILE](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE) variable
 * Removed strict upper boundary for supported IntelliJ Platform version
 
 ### [v1.16](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.16) (2021-12-01)

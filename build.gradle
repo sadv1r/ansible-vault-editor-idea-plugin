@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.17'
+version '1.18'
 
 repositories {
     mavenCentral()
@@ -37,14 +37,14 @@ task integrationTest(type: Test) {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     plugins = ['yaml']
-    version = '2021.3'
+    version = '2022.1'
     pluginName = 'Ansible Vault Editor'
     updateSinceUntilBuild = false
 }
 
 patchPluginXml {
     //https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
-    sinceBuild = "191.1"
+    sinceBuild = "203"
 
     pluginDescription = """
 Helps you create and edit Ansible Vaults
@@ -59,12 +59,18 @@ Helps you create and edit Ansible Vaults
     <li>Encrypt <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-files-with-ansible-vault">file as Ansible Vault</a></li>
     <li>Encrypt <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-individual-variables-with-ansible-vault">individual YAML property</a></li>
     <li>Modify existing Vault with auto encryption/decryption and protection from accidental pushing of sensitive data</li>
-    <li>Remember each vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a> or use <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE">ANSIBLE_VAULT_PASSWORD_FILE</a> variable</li>
+    <li>Remember each vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a> or use <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file">DEFAULT_VAULT_PASSWORD_FILE</a> configuration</li>
     <li>Re-encrypt vault with new password</li>
 </ul>
 """
 
     changeNotes = """
+<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.18"><b>v1.18</b></a> (2022-06-27)
+<br/>
+<ul>
+    <li>Possibility to get <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file">default vault password file path</a> from <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html">Ansible Config</a> file</li>
+</ul>
+<br/>
 <a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.17"><b>v1.17</b></a> (2021-12-03)
 <br/>
 <ul>

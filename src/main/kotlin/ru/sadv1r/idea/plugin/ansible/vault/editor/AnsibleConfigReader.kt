@@ -14,7 +14,7 @@ fun getPasswordFilePath(): String? {
 }
 
 /**
- * @see <a href="https://docs.ansible.com/ansible/latest/reference_appendices/general_precedence.html#configuration-settings">Ansible Configuration settings</a>
+ * @see <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html">Ansible Configuration settings</a>
  */
 private fun getPasswordFilePathFromConfig(): String? {
     var passwordFilePath: String?
