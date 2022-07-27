@@ -31,12 +31,10 @@ jobs:
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v1.2.1
         with:
           ide-versions: |
-            ideaIC:2019.1
-            ideaIU:2019.1
-            ideaIC:2020.1
-            ideaIU:2020.1
             ideaIC:2021.1
             ideaIU:2021.1
+            ideaIC:2022.1
+            ideaIU:2022.1
             ideaIC:LATEST-EAP-SNAPSHOT
             ideaIU:LATEST-EAP-SNAPSHOT
 
