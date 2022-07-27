@@ -30,7 +30,8 @@ class PropertyVaultLineMarkerProvider : LineMarkerProvider {
             AnsibleVaultEditorIcons.ansible,
             { "Open Ansible vault editor" },
             VaultEditorGutterIconNavigationHandler(),
-            GutterIconRenderer.Alignment.CENTER
+            GutterIconRenderer.Alignment.CENTER,
+            { "Open Ansible vault editor" }
         )
     }
 
