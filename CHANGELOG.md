@@ -1,6 +1,11 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- Fix default to opt-out of bundling Kotlin standard library in plugin distribution
+
+### Changed
+- Plugin size significantly reduced
 
 ## [1.18]
 ### Added
