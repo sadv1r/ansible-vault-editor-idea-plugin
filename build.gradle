@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.7.0'
     id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id 'org.jetbrains.intellij' version '1.7.0'
+    id 'org.jetbrains.changelog' version '1.3.1'
 }
 
 group 'ru.sadv1r'
@@ -42,6 +43,11 @@ intellij {
     updateSinceUntilBuild = false
 }
 
+changelog {
+    version = project.version
+    headerParserRegex = ~/(\d+\.\d+)/
+}
+
 patchPluginXml {
     //https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
     sinceBuild = "203"
@@ -64,125 +70,5 @@ Helps you create and edit Ansible Vaults
 </ul>
 """
 
-    changeNotes = """
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.18"><b>v1.18</b></a> (2022-06-27)
-<br/>
-<ul>
-    <li>Possibility to get <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file">default vault password file path</a> from <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html">Ansible Config</a> file</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.17"><b>v1.17</b></a> (2021-12-03)
-<br/>
-<ul>
-    <li>Possibility to use <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#storing-passwords-in-third-party-tools-with-vault-password-client-scripts">client script</a> in <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE">ANSIBLE_VAULT_PASSWORD_FILE</a> variable</li>
-    <li>Removed strict upper boundary for supported IntelliJ Platform version</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.16"><b>v1.16</b></a> (2021-12-01)
-<br/>
-<ul>
-    <li>IntelliJ Platform 2021.3 support</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.15"><b>v1.15</b></a> (2021-07-12)
-<br/>
-<ul>
-    <li>IntelliJ Platform 2021.2 support</li>
-    <li><a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#envvar-ANSIBLE_VAULT_PASSWORD_FILE">ANSIBLE_VAULT_PASSWORD_FILE</a> environment variable support</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.14"><b>v1.14</b></a> (2021-06-01)
-<br/>
-<ul>
-    <li>Possibility to encrypt any existing file</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.13"><b>v1.13</b></a> (2021-05-25)
-<br/>
-<ul>
-    <li>Possibility to encrypt existing yaml value</li>
-    <li>Vault <a href="https://www.jetbrains.com/help/idea/settings-gutter-icons.html">gutter</a> icons added with modify action on click</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.12"><b>v1.12</b></a> (2021-05-13)
-<br/>
-<ul>
-    <li>Possibility to change Vault password</li>
-    <li>Intentions family names changed to add possibility to disable them separately</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.11"><b>v1.11</b></a> (2021-02-03)
-<br/>
-<ul>
-    <li>Using Bouncy Castle bundled with IntelliJ</li>
-    <li>IntelliJ Platform 2021.1 support</li>
-    <li>Reduced plugin size</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.9"><b>v1.9</b></a> (2021-01-11)
-<br/>
-<ul>
-    <li>Fixed error on empty file vault creation</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.8"><b>v1.8</b></a> (2020-12-03)
-<br/>
-<ul>
-    <li>IntelliJ Platform 2020.3 support</li>
-    <li>Fixed null vault id labels when not set</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.7"><b>v1.7</b></a> (2020-11-18)
-<br/>
-<ul>
-    <li>Support for Vault ID labels</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.6"><b>v1.6</b></a> (2020-08-08)
-<br/>
-<ul>
-    <li>Encrypted <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypt-string-for-use-in-yaml">YAML properties</a> modification</li>
-    <li>Decrypted editor syntax highlighting for all languages supported by IDE</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.5"><b>v1.5</b></a> (2020-07-13)
-<br/>
-<ul>
-    <li>Support from older than ever IntelliJ 2019.1 to new 2020.2</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.4"><b>v1.4</b></a> (2020-06-06)
-<br/>
-<ul>
-    <li>Decrypt by Alt+Enter</li>
-    <li>Cleaning password field if wrong for faster correction</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.3"><b>v1.3</b></a> (2020-05-19)
-<br/>
-<ul>
-    <li>Fixed critical bug with invalid padding bytes</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.2"><b>v1.2</b></a> (2020-05-14)
-<br/>
-<ul>
-    <li>Possibility to remember vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a></li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.1"><b>v1.1</b></a> (2020-05-10)
-<br/>
-<ul>
-    <li>New logo</li>
-    <li>Better action name</li>
-    <li>Possibility to create new vault from empty file</li>
-</ul>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/tree/v1.0"><b>v1.0</b></a> (2020-05-10)
-<br/>
-<ul>
-    <li>Initial release of the plugin</li>
-    <li>Basic editor for encrypted YML files</li>
-</ul>
-"""
+    changeNotes = changelog.getLatest().toHTML()
 }
