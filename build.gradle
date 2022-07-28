@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'ru.sadv1r'
-version '1.18'
+version = properties['pluginVersion']
 
 repositories {
     mavenCentral()
