@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.19]
+### Added
 - Fix default to opt-out of bundling Kotlin standard library in plugin distribution
 
 ### Changed
