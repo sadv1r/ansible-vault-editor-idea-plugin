@@ -1,5 +1,5 @@
 # Ansible Vault Editor IntelliJ Plugin
-[![Gradle CI](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Gradle%20CI/badge.svg?branch=master)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions?query=workflow%3A%22Gradle+CI%22)
+[![Build](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Build/badge.svg?branch=master)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions?query=workflow%3A%22Build%22)
 [![Latest EAP Compatibility](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Latest%20EAP%20Compatibility/badge.svg?branch=master)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions?query=workflow%3A%22Latest+EAP+Compatibility%22)
 [![Known Vulnerabilities](https://snyk.io/test/github/sadv1r/ansible-vault-editor-idea-plugin/badge.svg?targetFile=build.gradle)](https://snyk.io/test/github/sadv1r/ansible-vault-editor-idea-plugin?targetFile=build.gradle)
 
