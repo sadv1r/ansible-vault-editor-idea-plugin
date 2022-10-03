@@ -1,14 +1,14 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor
 
+import com.intellij.openapi.util.io.FileUtil
+import com.intellij.util.SystemProperties
 import java.io.File
 import java.io.FileReader
 import java.util.*
 
 fun getPasswordFilePath(): String? {
-    val passwordFileEnv = System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
-    if (passwordFileEnv != null) {
-        return expandTilda(passwordFileEnv)
-    }
+    System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
+        ?.let { return FileUtil.expandUserHome(it) }
 
     return getPasswordFilePathFromConfig()
 }
@@ -17,30 +17,22 @@ fun getPasswordFilePath(): String? {
  * @see <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html">Ansible Configuration settings</a>
  */
 private fun getPasswordFilePathFromConfig(): String? {
-    var passwordFilePath: String?
-
     // environment variable if set
     val configPathEnv = System.getenv("ANSIBLE_CONFIG")
     if (configPathEnv != null) {
-        passwordFilePath = getPasswordFilePathFromConfig(expandTilda(configPathEnv))
-        if (passwordFilePath != null) {
-            return expandTilda(passwordFilePath)
-        }
+        getPasswordFilePathFromConfig(FileUtil.expandUserHome(configPathEnv))
+            ?.let { return it }
     }
 
     //TODO ansible.cfg (in the current directory)
 
     // in the home directory
-    passwordFilePath = getPasswordFilePathFromConfig(System.getProperty("user.home") + "/.ansible.cfg")
-    if (passwordFilePath != null) {
-        return expandTilda(passwordFilePath)
-    }
+    getPasswordFilePathFromConfig(SystemProperties.getUserHome() + "/.ansible.cfg")
+        ?.let { return it }
 
     // default config
-    passwordFilePath = getPasswordFilePathFromConfig("/etc/ansible/ansible.cfg")
-    if (passwordFilePath != null) {
-        return expandTilda(passwordFilePath)
-    }
+    getPasswordFilePathFromConfig("/etc/ansible/ansible.cfg")
+        ?.let { return it }
 
     return null
 }
@@ -53,13 +45,7 @@ private fun getPasswordFilePathFromConfig(configPath: String): String? {
             .use { properties.load(it) }
     }
 
-    return properties.getProperty("vault_password_file")
-}
+    val passwordFilePath = properties.getProperty("vault_password_file")
 
-private fun expandTilda(path: String): String {
-    if (path.startsWith("~" + File.separator)) {
-        return System.getProperty("user.home") + path.substring(1)
-    }
-
-    return path
+    return if (passwordFilePath != null) FileUtil.expandUserHome(passwordFilePath) else null
 }
