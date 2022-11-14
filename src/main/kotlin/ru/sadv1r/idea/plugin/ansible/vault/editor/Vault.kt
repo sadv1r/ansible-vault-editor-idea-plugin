@@ -70,15 +70,20 @@ abstract class Vault {
 
                 val defaultPassword = if (file.canExecute()) {
                     val vaultId = getVaultId()
-                    val process = if (vaultId == null) {
-                        Runtime.getRuntime().exec(file.absolutePath)
-                    } else {
-                        Runtime.getRuntime().exec(arrayOf(file.absolutePath, "--vault-id", vaultId))
-                    }
 
-                    process.waitFor(10, TimeUnit.SECONDS)
-                    val reader = BufferedReader(InputStreamReader(process.inputStream, Charsets.UTF_8))
-                    reader.readText()
+                    try {
+                        val process = if (vaultId == null) {
+                            Runtime.getRuntime().exec(file.absolutePath)
+                        } else {
+                            Runtime.getRuntime().exec(arrayOf(file.absolutePath, "--vault-id", vaultId))
+                        }
+
+                        process.waitFor(10, TimeUnit.SECONDS)
+                        val reader = BufferedReader(InputStreamReader(process.inputStream, Charsets.UTF_8))
+                        reader.readText()
+                    } catch (e: Exception) {
+                        file.readText(Charsets.UTF_8)
+                    }
                 } else {
                     file.readText(Charsets.UTF_8)
                 }
