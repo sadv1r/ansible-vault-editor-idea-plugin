@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Maximize disk space on GitHub Actions
 
 ### Changed
 
