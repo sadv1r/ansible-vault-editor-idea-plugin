@@ -32,7 +32,6 @@ class VaultEditorDialog(
         val editorFactory = EditorFactory.getInstance()
 
         decryptedDocument = editorFactory.createDocument(
-//            decryptedDocumentData.toString(Charsets.UTF_8).trim().replace("\r\n|\r".toRegex(), "\n")
             decryptedDocumentData.toString(Charsets.UTF_8)
         )
         decryptedDocument.setReadOnly(false)
