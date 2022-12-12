@@ -2,7 +2,6 @@
 
 ## [Unreleased]
 ### Added
-- Maximize disk space on GitHub Actions
 
 ### Changed
 
@@ -11,6 +10,8 @@
 ### Removed
 
 ### Fixed
+- Vault password from text file on Windows
+- Preserve newline at end of file
 
 ### Security
 
