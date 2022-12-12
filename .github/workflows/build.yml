@@ -6,6 +6,9 @@ on:
       - master
   pull_request:
 
+  pull_request_target:
+    types: [labeled]
+
 jobs:
   build:
     runs-on: ubuntu-latest
