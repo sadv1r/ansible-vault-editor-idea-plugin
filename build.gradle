@@ -70,3 +70,8 @@ Helps you create and edit Ansible Vaults
 
     changeNotes = changelog.getLatest().toHTML()
 }
+
+publishPlugin {
+    dependsOn("patchChangelog")
+    token = System.getenv("PUBLISH_TOKEN")
+}
