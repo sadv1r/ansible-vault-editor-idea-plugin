@@ -48,7 +48,7 @@ changelog {
 
 patchPluginXml {
     //https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
-    sinceBuild = "203"
+    sinceBuild = "213"
 
     pluginDescription = """
 Helps you create and edit Ansible Vaults
