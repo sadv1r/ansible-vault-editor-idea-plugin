@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- Set default password from vault_password_file when creating new Vault
 
 ### Changed
 

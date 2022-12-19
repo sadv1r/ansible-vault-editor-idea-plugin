@@ -5,11 +5,7 @@ import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
-import java.io.BufferedReader
-import java.io.File
 import java.io.IOException
-import java.io.InputStreamReader
-import java.util.concurrent.TimeUnit
 
 abstract class Vault {
     abstract fun setEncryptedData(data: String)
@@ -62,37 +58,14 @@ abstract class Vault {
     }
 
     private fun tryWithDefaultOrAsk() {
-        val defaultPasswordFile = getPasswordFilePath()
-
-        if (defaultPasswordFile != null) {
-            try {
-                val file = File(defaultPasswordFile)
-
-                val defaultPassword = if (file.canExecute()) {
-                    val vaultId = getVaultId()
-
-                    try {
-                        val process = if (vaultId == null) {
-                            Runtime.getRuntime().exec(file.absolutePath)
-                        } else {
-                            Runtime.getRuntime().exec(arrayOf(file.absolutePath, "--vault-id", vaultId))
-                        }
-
-                        process.waitFor(10, TimeUnit.SECONDS)
-                        val reader = BufferedReader(InputStreamReader(process.inputStream, Charsets.UTF_8))
-                        reader.readText()
-                    } catch (e: Exception) {
-                        file.readText(Charsets.UTF_8)
-                    }
-                } else {
-                    file.readText(Charsets.UTF_8)
-                }
-
+        val defaultPassword = safeGetPasswordFromFile(getVaultId())
+        try {
+            if (defaultPassword != null) {
                 tryOpen(defaultPassword.trim())
-            } catch (e: Exception) {
+            } else {
                 VaultPasswordDialog(this).showAndGet()
             }
-        } else {
+        } catch (e: Exception) {
             VaultPasswordDialog(this).showAndGet()
         }
     }
