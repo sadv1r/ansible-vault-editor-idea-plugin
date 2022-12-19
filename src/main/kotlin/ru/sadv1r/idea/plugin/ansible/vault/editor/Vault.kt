@@ -3,6 +3,7 @@ package ru.sadv1r.idea.plugin.ansible.vault.editor
 import com.intellij.openapi.fileTypes.FileType
 import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
+import ru.sadv1r.idea.plugin.ansible.vault.editor.settings.AnsibleVaultEditorSettings
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
 import java.io.BufferedReader
@@ -62,7 +63,8 @@ abstract class Vault {
     }
 
     private fun tryWithDefaultOrAsk() {
-        val defaultPasswordFile = getPasswordFilePath()
+        val defaultPasswordFile = AnsibleVaultEditorSettings.getInstance().passwordFilePath
+            ?: getPasswordFilePath()
 
         if (defaultPasswordFile != null) {
             try {
