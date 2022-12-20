@@ -3,6 +3,7 @@ package ru.sadv1r.idea.plugin.ansible.vault.editor.ui
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.ValidationInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
+import ru.sadv1r.idea.plugin.ansible.vault.editor.safeGetPasswordFromFile
 import ru.sadv1r.idea.plugin.ansible.vault.editor.savePassword
 import java.awt.BorderLayout
 import java.awt.Component
@@ -31,7 +32,12 @@ class CreatePropertyVaultPasswordDialog(
         label.alignmentX = Component.LEFT_ALIGNMENT
         dialogPanel.add(label, BorderLayout.CENTER)
 
-        pass = JPasswordField(20)
+        val password = safeGetPasswordFromFile(null)?.trim()
+        pass = if (password != null) {
+            JPasswordField(password, 20)
+        } else {
+            JPasswordField(20)
+        }
         pass.alignmentX = Component.LEFT_ALIGNMENT
         dialogPanel.add(pass, BorderLayout.CENTER)
 
