@@ -5,18 +5,6 @@
 ### Added
 - Set default password from vault_password_file when creating new Vault
 
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-
-## 1.20 - 2022-12-12
-
 ### Fixed
 - Vault password from text file on Windows
 - Preserve newline at end of file
