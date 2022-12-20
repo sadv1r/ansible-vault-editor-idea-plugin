@@ -3,6 +3,20 @@
 ## Unreleased
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## 1.20 - 2022-12-20
+
+### Added
 - Set default password from vault_password_file when creating new Vault
 
 ### Fixed
