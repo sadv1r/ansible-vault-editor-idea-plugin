@@ -17,10 +17,11 @@ jobs:
       changelog: ${{ steps.properties.outputs.changelog }}
     steps:
       - name: Maximize Build Space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          large-packages: false
+          docker-images: false
 
       - name: Fetch Sources
         uses: actions/checkout@v3

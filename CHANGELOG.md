@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- GitHub Actions: use `jlumbroso/free-disk-space` to free disk space
 
 ### Changed
 
