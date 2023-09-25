@@ -2,26 +2,21 @@ name: Build
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
 
   pull_request_target:
-    types: [labeled]
+    types: [ labeled ]
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
+      pluginVerifierHomeDir: ${{ steps.properties.outputs.pluginVerifierHomeDir }}
     steps:
-      - name: Maximize Build Space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
-
       - name: Fetch Sources
         uses: actions/checkout@v3
 
@@ -33,6 +28,11 @@ jobs:
         with:
           distribution: zulu
           java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-home-cache-cleanup: true
 
       - name: Export Properties
         id: properties
@@ -49,34 +49,8 @@ jobs:
           
           ./gradlew listProductsReleases
 
-      - name: Run Tests
-        run: ./gradlew test
-
-      - name: Collect Tests Result
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: tests-result
-          path: ${{ github.workspace }}/build/reports/tests
-
-      - name: Test generated vaults with official CLI tool
-        run: ./gradlew integrationTest
-
-      - name: Setup Plugin Verifier IDEs Cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
-
-      - name: Run Plugin Verification tasks
-        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
-
-      - name: Collect Plugin Verifier Result
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: pluginVerifier-result
-          path: ${{ github.workspace }}/build/reports/pluginVerifier
+      - name: Build plugin
+        run: ./gradlew buildPlugin
 
       - name: Prepare Plugin Artifact
         id: artifact
@@ -101,12 +75,85 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           status: ${{ job.status }}
 
+  test:
+    name: Test
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Run Tests
+        run: ./gradlew test
+
+      - name: Collect Tests Result
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests-result
+          path: ${{ github.workspace }}/build/reports/tests
+
+      - name: Test generated vaults with official CLI tool
+        run: ./gradlew integrationTest
+
+  verify:
+    name: Verify plugin
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Maximize Build Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          large-packages: false
+
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Setup Plugin Verifier IDEs Cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
+          key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
+
+      - name: Run Plugin Verification tasks
+        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
+
+      - name: Collect Plugin Verifier Result
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: pluginVerifier-result
+          path: ${{ github.workspace }}/build/reports/pluginVerifier
+
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
   releaseDraft:
     name: Release Draft
     if: github.event_name != 'pull_request'
-    needs: build
+    needs: [ build, test, verify ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
