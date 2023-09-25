@@ -19,7 +19,7 @@ class VaultPasswordDialog(
 
     init {
         title = "Vault Decrypt"
-        setResizable(true)
+        isResizable = true
         init()
     }
 

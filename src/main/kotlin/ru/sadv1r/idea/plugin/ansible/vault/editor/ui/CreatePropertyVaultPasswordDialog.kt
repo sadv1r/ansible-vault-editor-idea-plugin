@@ -18,7 +18,7 @@ class CreatePropertyVaultPasswordDialog(
 
     init {
         title = "Vault Encrypt"
-        setResizable(true)
+        isResizable = true
         init()
     }
 

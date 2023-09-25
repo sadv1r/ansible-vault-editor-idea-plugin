@@ -18,7 +18,7 @@ public class CypherAES256 implements Cypher {
     public static final String CYPHER_ID = "AES256";
 
     private static final Logger logger = Logger.getInstance(CypherAES256.class);
-    private static final String JDK8_UPF_URL = "http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html";
+    private static final String JDK8_UPF_URL = "https://www.oracle.com/java/technologies/javase-jce8-downloads.html";
 
     private static final int AES_KEYLEN = 256;
     private static final String CHAR_ENCODING = "UTF-8";

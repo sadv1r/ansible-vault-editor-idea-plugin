@@ -24,7 +24,7 @@ class VaultChangePasswordDialog(
 
     init {
         title = "Change Vault Password"
-        setResizable(true)
+        isResizable = true
         init()
     }
 

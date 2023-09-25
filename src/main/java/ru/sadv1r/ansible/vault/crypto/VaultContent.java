@@ -64,7 +64,7 @@ public class VaultContent {
 
         int idx = 0;
         int saltLen = 0;
-        while (encodedData[idx] != '\n' && idx < encodedData.length) {
+        while (idx < encodedData.length && encodedData[idx] != '\n') {
             saltLen++;
             idx++;
         }
@@ -76,7 +76,7 @@ public class VaultContent {
         result[0] = saltLen;
 
         int hmacLen = 0;
-        while (encodedData[idx] != '\n' && idx < encodedData.length) {
+        while (idx < encodedData.length && encodedData[idx] != '\n') {
             hmacLen++;
             idx++;
         }
@@ -104,7 +104,7 @@ public class VaultContent {
         int idx = 0;
         int saltIdx = 0;
         result[0] = new byte[partsLength[0]];
-        while (encodedData[idx] != '\n' && idx < encodedData.length) {
+        while (idx < encodedData.length && encodedData[idx] != '\n') {
             result[0][saltIdx++] = encodedData[idx++];
         }
         // Skip the newline
@@ -114,7 +114,7 @@ public class VaultContent {
         }
         int macIdx = 0;
         result[1] = new byte[partsLength[1]];
-        while (encodedData[idx] != '\n' && idx < encodedData.length) {
+        while (idx < encodedData.length && encodedData[idx] != '\n') {
             result[1][macIdx++] = encodedData[idx++];
         }
         // Skip the newline
