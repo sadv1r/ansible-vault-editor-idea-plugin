@@ -115,6 +115,7 @@ jobs:
       contents: write
       checks: write
       pull-requests: write
+      security-events: write
     steps:
       - name: Maximize Build Space
         uses: jlumbroso/free-disk-space@main
