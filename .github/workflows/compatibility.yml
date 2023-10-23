@@ -3,33 +3,50 @@ name: Latest EAP Compatibility
 on:
   schedule:
     - cron: '3 0 * * *'
+  pull_request:
 
 jobs:
   compatibility:
     name: Ensure plugin compatibility against the latest EAP snapshot for both IDEA Community and IDEA Ultimate
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Fetch Sources
         uses: actions/checkout@v3
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: zulu
           java-version: 11
-          cache: 'gradle'
-      - name: Build with Gradle
-        run: ./gradlew build
-      - name: Verify IDEA compatibility
-        id: verify
-        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v1.2.2
+
+      - name: Run Tests
+        run: ./gradlew test
+
+      - name: Collect Tests Result
+        if: failure()
+        uses: actions/upload-artifact@v3
         with:
-          ide-versions: |
-            ideaIC:LATEST-EAP-SNAPSHOT
-            ideaIU:LATEST-EAP-SNAPSHOT
+          name: tests-result
+          path: ${{ github.workspace }}/build/reports/tests
+
+      - name: Test generated vaults with official CLI tool
+        run: ./gradlew integrationTest
+
+      - name: Run Plugin Verification tasks
+        run: ./gradlew runPluginVerifier -PideVersions=LATEST-EAP-SNAPSHOT
+
+      - name: Collect Plugin Verifier Result
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: pluginVerifier-result
+          path: ${{ github.workspace }}/build/reports/pluginVerifier
+
       - name: Get log file path and print contents
         run: |
           echo "The log file path is: ${{steps.verify.outputs.verification-output-log-filename}}";
           cat ${{steps.verify.outputs.verification-output-log-filename}}
+
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
         if: always()
