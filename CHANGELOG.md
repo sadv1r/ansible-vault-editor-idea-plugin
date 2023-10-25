@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- Wrong line separators: '\r\n'
 
 ### Security
 
