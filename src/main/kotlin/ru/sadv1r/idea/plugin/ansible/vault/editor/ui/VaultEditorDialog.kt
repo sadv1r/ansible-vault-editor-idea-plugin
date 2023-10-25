@@ -5,6 +5,7 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.ex.EditorEx
+import com.intellij.openapi.editor.impl.EditorFactoryImpl
 import com.intellij.openapi.fileTypes.UnknownFileType
 import com.intellij.openapi.ui.DialogWrapper
 import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
@@ -29,10 +30,11 @@ class VaultEditorDialog(
     }
 
     override fun createCenterPanel(): JComponent {
-        val editorFactory = EditorFactory.getInstance()
+        val editorFactory = EditorFactory.getInstance() as EditorFactoryImpl
 
         decryptedDocument = editorFactory.createDocument(
-            decryptedDocumentData.toString(Charsets.UTF_8)
+            decryptedDocumentData.toString(Charsets.UTF_8),
+            true, false
         )
         decryptedDocument.setReadOnly(false)
         editor = editorFactory.createEditor(decryptedDocument) as EditorEx
