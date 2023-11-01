@@ -50,7 +50,7 @@ jobs:
           ./gradlew listProductsReleases
 
       - name: Build plugin
-        run: ./gradlew buildPlugin
+        run: ./gradlew buildPlugin --scan
 
       - name: Prepare Plugin Artifact
         id: artifact

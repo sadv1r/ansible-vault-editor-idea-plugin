@@ -1,1 +1,16 @@
+plugins {
+    // https://docs.gradle.com/enterprise/get-started/#applying_the_plugin
+    id "com.gradle.enterprise" version "3.15.1"
+}
+
+// https://docs.gradle.com/enterprise/gradle-plugin/#connecting_to_scans_gradle_com
+gradleEnterprise {
+    if (System.getenv("CI") != null) {
+        buildScan {
+            termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            termsOfServiceAgree = "yes"
+        }
+    }
+}
+
 rootProject.name = 'ansible-vault-editor-idea-plugin'
