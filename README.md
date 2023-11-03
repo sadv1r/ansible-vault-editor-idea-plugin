@@ -9,8 +9,7 @@
 
 Ansible Vault Editor is an IntelliJ IDEA plugin that helps you edit Ansible® Vaults, preventing accidental push of decrypted confidential data
 
-<img src="https://img.sadv1r.ru/ansible-editor-idea-plugin-password-pompt.png" alt="Vault editor password prompt window" width="47%"/> <img src="https://img.sadv1r.ru/ansible-editor-idea-plugin-editor.png" alt="Vault editor window" width="50%"/>
-
+<img src="https://i.ibb.co/c2Qn0R6/Encrypted-File-Intention.png" alt="Encrypted file intention" width="33%"/> <img src="https://i.ibb.co/Ypmw7bJ/Password-Dialog.png" alt="Password dialog" width="33%"/> <img src="https://i.ibb.co/jzSKvCz/Editor-Dialog.png" alt="Editor dialog" width="33%"/>
 
 Features
 --------
