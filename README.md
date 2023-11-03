@@ -1,6 +1,6 @@
 # Ansible Vault Editor IntelliJ Plugin
-[![Build](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Build/badge.svg?branch=main)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions?query=workflow%3A%22Build%22)
-[![Latest EAP Compatibility](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/workflows/Latest%20EAP%20Compatibility/badge.svg?branch=main)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions?query=workflow%3A%22Latest+EAP+Compatibility%22)
+[![Build](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions/workflows/build.yml)
+[![Latest EAP Compatibility](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions/workflows/compatibility.yml/badge.svg)](https://github.com/sadv1r/ansible-vault-editor-idea-plugin/actions/workflows/compatibility.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/sadv1r/ansible-vault-editor-idea-plugin/badge.svg?targetFile=build.gradle)](https://snyk.io/test/github/sadv1r/ansible-vault-editor-idea-plugin?targetFile=build.gradle)
 
 [![JetBrains plugin](https://img.shields.io/jetbrains/plugin/v/14278-ansible-vault-editor?label=version)](https://plugins.jetbrains.com/plugin/14278-ansible-vault-editor)
