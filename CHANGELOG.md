@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Fixed usage of scheduled for removal API
+
 ### Security
 
 ## 1.21 - 2023-10-25
