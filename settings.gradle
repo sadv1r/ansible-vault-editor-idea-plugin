@@ -1,6 +1,6 @@
 plugins {
     // https://docs.gradle.com/enterprise/get-started/#applying_the_plugin
-    id "com.gradle.enterprise" version "3.16.2"
+    id "com.gradle.enterprise" version "3.17.6"
 }
 
 // https://docs.gradle.com/enterprise/gradle-plugin/#connecting_to_scans_gradle_com
