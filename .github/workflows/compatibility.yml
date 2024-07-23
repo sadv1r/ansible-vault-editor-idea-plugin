@@ -21,7 +21,7 @@ jobs:
         run: ./gradlew build
       - name: Verify IDEA compatibility
         id: verify
-        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v1.2.2
+        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v2.0.2
         with:
           ide-versions: |
             ideaIC:LATEST-EAP-SNAPSHOT
