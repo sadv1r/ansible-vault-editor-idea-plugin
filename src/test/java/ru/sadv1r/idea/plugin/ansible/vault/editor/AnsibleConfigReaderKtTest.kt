@@ -14,7 +14,7 @@ internal class AnsibleConfigReaderKtTest {
     @Test
     fun getPasswordFilePathFromEnv() {
         val filePath: String? = withEnvironmentVariable("ANSIBLE_VAULT_PASSWORD_FILE", "/c/passFileFromEnv.txt")
-            .execute(Callable { getPasswordFilePath() })
+            .execute(Callable { getPasswordFilePath(null) })
 
         assertEquals("/c/passFileFromEnv.txt", filePath)
     }
@@ -26,7 +26,7 @@ internal class AnsibleConfigReaderKtTest {
 
             val filePath: String? =
                 withEnvironmentVariable("ANSIBLE_VAULT_PASSWORD_FILE", "~/passFileFromEnvWithTilda.txt")
-                    .execute(Callable { getPasswordFilePath() })
+                    .execute(Callable { getPasswordFilePath(null) })
 
             assertEquals("/Users/user/passFileFromEnvWithTilda.txt", filePath)
         }
@@ -43,7 +43,7 @@ internal class AnsibleConfigReaderKtTest {
         )
 
         val filePath: String? = withEnvironmentVariable("ANSIBLE_CONFIG", tempConfigFile.absolutePath)
-            .execute(Callable { getPasswordFilePath() })
+            .execute(Callable { getPasswordFilePath(null) })
 
         assertEquals("/c/passFileFromConfigInEnv.txt", filePath)
     }
@@ -62,7 +62,7 @@ internal class AnsibleConfigReaderKtTest {
             System.setProperty("user.home", "/Users/user")
 
             val filePath: String? = withEnvironmentVariable("ANSIBLE_CONFIG", tempConfigFile.absolutePath)
-                .execute(Callable { getPasswordFilePath() })
+                .execute(Callable { getPasswordFilePath(null) })
 
             assertEquals("/Users/user/passFileFromConfigInEnvWithTilda.txt", filePath)
         }
@@ -81,7 +81,7 @@ internal class AnsibleConfigReaderKtTest {
         restoreSystemProperties {
             System.setProperty("user.home", tempConfigFile.parent)
 
-            assertEquals("/c/passFileFromConfigInHomeDirectory.txt", getPasswordFilePath())
+            assertEquals("/c/passFileFromConfigInHomeDirectory.txt", getPasswordFilePath(null))
         }
     }
 
