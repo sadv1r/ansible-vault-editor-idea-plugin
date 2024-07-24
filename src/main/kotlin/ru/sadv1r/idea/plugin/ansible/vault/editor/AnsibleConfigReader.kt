@@ -47,13 +47,13 @@ fun getPasswordFilePath(vault: Vault?): String? {
     System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
         ?.let { return FileUtil.expandUserHome(it) }
 
-    return getPasswordFilePathFromConfig(vault!!)
+    return getPasswordFilePathFromConfig(vault)
 }
 
 /**
  * @see <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html">Ansible Configuration settings</a>
  */
-private fun getPasswordFilePathFromConfig(vault: Vault): String? {
+private fun getPasswordFilePathFromConfig(vault: Vault?): String? {
 
     // environment variable if set
     val configPathEnv = System.getenv("ANSIBLE_CONFIG")
@@ -67,9 +67,11 @@ private fun getPasswordFilePathFromConfig(vault: Vault): String? {
         ?.let { return it }
 
     // in module root - interpret relative paths from module root
-    val moduleRoot = vault.getModuleRoot()!!.path
-    getPasswordFilePathFromConfig("$moduleRoot/ansible.cfg")
-        ?.let { return if (FileUtil.isAbsolute(it)) it else "$moduleRoot/$it" }
+    if (vault != null) {
+        val moduleRoot = vault.getModuleRoot()!!.path
+        getPasswordFilePathFromConfig("$moduleRoot/ansible.cfg")
+            ?.let { return if (FileUtil.isAbsolute(it)) it else "$moduleRoot/$it" }
+    }
 
     // in the home directory interpret relative paths from home directory
     val userHome = SystemProperties.getUserHome()
