@@ -5,7 +5,15 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.fileTypes.FileTypeManager
+import com.intellij.openapi.progress.ModalTaskOwner.project
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.ProjectManager
+import com.intellij.openapi.roots.ProjectRootManager
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.wm.WindowManager
 import ru.sadv1r.ansible.vault.VaultHandler
+import java.awt.Window
+
 
 class FileVault(
     private val document: Document
@@ -32,6 +40,10 @@ class FileVault(
     override fun getFileType(): FileType {
         val extension = FileDocumentManager.getInstance().getFile(document)?.extension.orEmpty()
         return FileTypeManager.getInstance().getFileTypeByExtension(extension)
+    }
+
+    override fun getDocument(): Document {
+        return document
     }
 
     override fun getText(): String {
