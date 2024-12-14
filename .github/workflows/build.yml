@@ -122,6 +122,9 @@ jobs:
 
       - name: Fetch Sources
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Setup Java
         uses: actions/setup-java@v4
