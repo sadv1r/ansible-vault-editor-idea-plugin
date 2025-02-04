@@ -1,10 +1,18 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor
 
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.fileTypes.FileType
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.ProjectManager
+import com.intellij.openapi.roots.ProjectRootManager
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.wm.WindowManager
 import ru.sadv1r.ansible.vault.VaultHandler
 import ru.sadv1r.ansible.vault.crypto.VaultInfo
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultEditorDialog
 import ru.sadv1r.idea.plugin.ansible.vault.editor.ui.VaultPasswordDialog
+import java.awt.Window
 import java.io.IOException
 
 abstract class Vault {
@@ -13,6 +21,7 @@ abstract class Vault {
     abstract fun getDecryptedData(password: String): ByteArray
     abstract fun getKey(): String
     abstract fun getFileType(): FileType
+    abstract fun getDocument(): Document
 
     fun setEncryptedData(data: ByteArray, password: CharArray) {
         val vaultId = getVaultId()
@@ -58,7 +67,7 @@ abstract class Vault {
     }
 
     private fun tryWithDefaultOrAsk() {
-        val defaultPassword = safeGetPasswordFromFile(getVaultId())
+        val defaultPassword = safeGetPasswordFromFile(this, getVaultId())
         try {
             if (defaultPassword != null) {
                 tryOpen(defaultPassword.trim())
@@ -76,5 +85,21 @@ abstract class Vault {
             password.toCharArray(),
             this
         ).showAndGet()
+    }
+
+    fun getModuleRoot(): VirtualFile? {
+        val projects: Array<Project> = ProjectManager.getInstance().openProjects
+        var activeProject: Project? = null
+        for (project in projects) {
+            val window: Window? = WindowManager.getInstance().suggestParentWindow(project)
+            if (window != null && window.isActive()) {
+                activeProject = project
+            }
+        }
+        if (activeProject != null) {
+            return ProjectRootManager.getInstance(activeProject)
+                .fileIndex.getContentRootForFile(FileDocumentManager.getInstance().getFile(getDocument())!!)
+        }
+        return null
     }
 }

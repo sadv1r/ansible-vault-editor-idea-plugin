@@ -32,7 +32,7 @@ class CreatePropertyVaultPasswordDialog(
         label.alignmentX = Component.LEFT_ALIGNMENT
         dialogPanel.add(label, BorderLayout.CENTER)
 
-        val password = safeGetPasswordFromFile(null)?.trim()
+        val password = safeGetPasswordFromFile(vault,null)?.trim()
         pass = if (password != null) {
             JPasswordField(password, 20)
         } else {
