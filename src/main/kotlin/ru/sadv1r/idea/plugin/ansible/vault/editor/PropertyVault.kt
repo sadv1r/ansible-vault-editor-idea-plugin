@@ -52,6 +52,10 @@ class PropertyVault(
         return YAMLFileType.YML
     }
 
+    override fun getDocument(): Document {
+        return document
+    }
+
     override fun getText(): String {
         return property.valueText
     }

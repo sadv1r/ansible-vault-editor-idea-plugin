@@ -34,6 +34,10 @@ class FileVault(
         return FileTypeManager.getInstance().getFileTypeByExtension(extension)
     }
 
+    override fun getDocument(): Document {
+        return document
+    }
+
     override fun getText(): String {
         return document.text
     }

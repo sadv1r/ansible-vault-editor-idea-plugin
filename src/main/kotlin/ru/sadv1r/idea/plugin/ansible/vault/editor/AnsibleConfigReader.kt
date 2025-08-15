@@ -9,16 +9,16 @@ import java.io.InputStreamReader
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-fun safeGetPasswordFromFile(vaultId: String?): String? {
+fun safeGetPasswordFromFile(vault: Vault?, vaultId: String?): String? {
     return try {
-        getPasswordFromFile(vaultId)
+        getPasswordFromFile(vault, vaultId)
     } catch (e: Exception) {
         null
     }
 }
 
-private fun getPasswordFromFile(vaultId: String?): String? {
-    val passwordFilePath = getPasswordFilePath()
+private fun getPasswordFromFile(vault: Vault?, vaultId: String?): String? {
+    val passwordFilePath = getPasswordFilePath(vault)
 
     return if (passwordFilePath != null) {
         val file = File(passwordFilePath)
@@ -43,17 +43,18 @@ private fun getPasswordFromFile(vaultId: String?): String? {
     } else null
 }
 
-fun getPasswordFilePath(): String? {
+fun getPasswordFilePath(vault: Vault?): String? {
     System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
         ?.let { return FileUtil.expandUserHome(it) }
 
-    return getPasswordFilePathFromConfig()
+    return getPasswordFilePathFromConfig(vault)
 }
 
 /**
  * @see <a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html">Ansible Configuration settings</a>
  */
-private fun getPasswordFilePathFromConfig(): String? {
+private fun getPasswordFilePathFromConfig(vault: Vault?): String? {
+
     // environment variable if set
     val configPathEnv = System.getenv("ANSIBLE_CONFIG")
     if (configPathEnv != null) {
@@ -61,13 +62,23 @@ private fun getPasswordFilePathFromConfig(): String? {
             ?.let { return it }
     }
 
-    //TODO ansible.cfg (in the current directory)
-
-    // in the home directory
-    getPasswordFilePathFromConfig(SystemProperties.getUserHome() + "/.ansible.cfg")
+    // in current directory
+    getPasswordFilePathFromConfig("ansible.cfg")
         ?.let { return it }
 
-    // default config
+    // in module root - interpret relative paths from module root
+    if (vault != null) {
+        val moduleRoot = vault.getModuleRoot()!!.path
+        getPasswordFilePathFromConfig("$moduleRoot/ansible.cfg")
+            ?.let { return if (FileUtil.isAbsolute(it)) it else "$moduleRoot/$it" }
+    }
+
+    // in the home directory interpret relative paths from home directory
+    val userHome = SystemProperties.getUserHome()
+    getPasswordFilePathFromConfig("$userHome/.ansible.cfg")
+        ?.let { return if (FileUtil.isAbsolute(it)) it else "$userHome/$it" }
+
+    // default config - we expect absolute path in it
     getPasswordFilePathFromConfig("/etc/ansible/ansible.cfg")
         ?.let { return it }
 
