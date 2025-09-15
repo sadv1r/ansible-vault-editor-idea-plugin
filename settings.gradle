@@ -1,16 +1,15 @@
 plugins {
-    // https://docs.gradle.com/enterprise/get-started/#applying_the_plugin
-    id "com.gradle.enterprise" version "3.16"
+    // https://docs.gradle.com/develocity/gradle-plugin/current/#applying_the_plugin
+    id "com.gradle.develocity" version "3.19.2"
 }
 
-// https://docs.gradle.com/enterprise/gradle-plugin/#connecting_to_scans_gradle_com
-gradleEnterprise {
-    if (System.getenv("CI") != null) {
-        buildScan {
-            termsOfServiceUrl = "https://gradle.com/terms-of-service"
-            termsOfServiceAgree = "yes"
-        }
+// https://docs.gradle.com/develocity/gradle-plugin/current/#connecting_to_scans_gradle_com
+develocity {
+    buildScan {
+        termsOfUseUrl = "https://gradle.com/help/legal-terms-of-use"
+        termsOfUseAgree = "yes"
+        publishing.onlyIf { System.getenv("CI") != null }
     }
 }
 
-rootProject.name = 'ansible-vault-editor-idea-plugin'
+rootProject.name = "ansible-vault-editor-idea-plugin"

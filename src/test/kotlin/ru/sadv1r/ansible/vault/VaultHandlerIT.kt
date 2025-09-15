@@ -4,7 +4,6 @@ import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
 import java.io.File
 import java.nio.file.Files
-import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random.Default.nextInt
 import kotlin.test.assertEquals
@@ -168,6 +167,46 @@ class VaultHandlerIT {
         val decrypted = String(VaultHandler.decrypt(cliEncrypted, password))
 
         assertEquals(data, decrypted)
+    }
+
+    @Test
+    fun testAnsibleLintValidation() {
+        println("Testing that encrypted vault files pass ansible-lint validation")
+
+        // Pre-check: Verify that ansible-lint is installed
+        val checkCommand = listOf("ansible-lint", "--version")
+        try {
+            val checkProcess: Process = ProcessBuilder()
+                .command(checkCommand)
+                .redirectErrorStream(true)
+                .start()
+
+            checkProcess.waitFor(5, TimeUnit.SECONDS)
+        } catch (_: java.io.IOException) {
+            throw AssertionError("ansible-lint is not installed or not accessible. Install ansible-lint to run this test")
+        }
+
+        val testData = "userLogin: admin\nuserPass: pass123"
+        val password = "testpassword"
+
+        val encrypted = VaultHandler.encrypt(testData.toByteArray(), password)
+
+        val tempDir = Files.createTempDirectory("vault-test")
+        val encryptedFile: File = File.createTempFile("vault", ".yml", tempDir.toFile())
+        encryptedFile.writeBytes(encrypted + "\n".toByteArray()) //because of FileVault.setEncryptedData '+ "\n"'
+
+        val command = listOf("ansible-lint", encryptedFile.absolutePath)
+
+        val process: Process = ProcessBuilder()
+            .command(command)
+            .redirectErrorStream(true)
+            .start()
+
+        process.waitFor(10, TimeUnit.SECONDS)
+        val output = process.inputStream.bufferedReader().readText()
+        println("ansible-lint output: $output")
+
+        assertEquals(0, process.exitValue(), "ansible-lint should pass without errors for generated vault files")
     }
 
 }
