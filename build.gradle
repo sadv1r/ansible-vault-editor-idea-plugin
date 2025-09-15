@@ -25,7 +25,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(17)
 }
 
 test {
@@ -38,7 +38,7 @@ tasks.register('integrationTest', Test) {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     plugins = ['yaml']
-    version = '2022.1'
+    version = '2023.1'
     pluginName = 'Ansible Vault Editor'
     updateSinceUntilBuild = false
 }
@@ -50,7 +50,7 @@ changelog {
 
 patchPluginXml {
     //https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
-    sinceBuild = "221"
+    sinceBuild = "231"
 
     pluginDescription = """
 Helps you create and edit Ansible Vaults
