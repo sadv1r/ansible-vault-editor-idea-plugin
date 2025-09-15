@@ -101,7 +101,10 @@ jobs:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
 
-      - name: Test generated vaults with official CLI tool
+      - name: Install ansible-lint
+        run: pip install ansible-lint
+
+      - name: Test generated vaults with official CLI tools
         run: ./gradlew integrationTest
 
   inspectCode:
