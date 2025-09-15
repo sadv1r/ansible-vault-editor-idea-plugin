@@ -13,7 +13,7 @@ class FileVault(
 
     override fun setEncryptedData(data: String) {
         ApplicationManager.getApplication().runWriteAction {
-            document.setText(data)
+            document.setText(data + "\n")
         }
     }
 
