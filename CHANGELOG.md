@@ -6,17 +6,23 @@
 
 ### Changed
 
-- Change since build to `231` (2023.1)
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- Fixed usage of scheduled for removal API
-
 ### Security
+
+## 1.22 - 2025-09-16
+
+### Changed
+
+- Change since build to `231` (2023.1)
+
+### Fixed
+
+- Fixed usage of scheduled for removal API
 
 ## 1.21 - 2023-10-25
 
