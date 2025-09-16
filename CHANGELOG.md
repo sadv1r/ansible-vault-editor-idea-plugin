@@ -14,6 +14,7 @@
 
 ### Fixed
 
+- ansible-lint: No new line character at the end of file
 - Fixed usage of scheduled for removal API
 
 ### Security
