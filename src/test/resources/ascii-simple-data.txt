@@ -1,0 +1,5 @@
+userLogin: admin
+userPass: pass123
+
+db:
+    pass: qwerty

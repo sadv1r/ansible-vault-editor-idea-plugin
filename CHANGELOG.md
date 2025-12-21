@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Upgraded IntelliJ Platform Gradle Plugin from 1.17.4 to 2.10.5
+
 ### Deprecated
 
 ### Removed
