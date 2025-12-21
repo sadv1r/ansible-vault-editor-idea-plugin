@@ -8,7 +8,7 @@ plugins {
     id 'org.jetbrains.changelog' version '2.4.0'
 }
 
-group 'ru.sadv1r'
+group = 'ru.sadv1r'
 version = properties['pluginVersion']
 
 repositories {
