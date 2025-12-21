@@ -1,0 +1,47 @@
+# Emoji and Symbols
+status: ✓ Completed 🚀
+reaction: 👍 Success! 🎉
+progress: ▓▓▓▓▓░░░░░ 50%
+
+# Cyrillic
+пользователь: администратор
+пароль: секретный123
+
+# CJK Characters (Chinese, Japanese, Korean)
+用户名: 管理员
+パスワード: テスト123
+사용자: 테스트계정
+
+# Arabic Script (Right-to-Left)
+المستخدم: مسؤول
+كلمة_السر: سري123
+
+# Mathematical and Special Symbols
+formula: ∑(x²) ≈ π × √2
+set_notation: {α, β, γ} ∈ ℝ
+inequality: x ≥ 0 ∧ x ≤ ∞
+
+# Greek Letters
+constants: α=1.5, β=2.7, γ=3.14, δ=0.001
+units: µs (microseconds), Ω (ohms)
+
+# Box Drawing and Geometric Shapes
+border: ╔═══════════╗
+shapes: ◆ ◇ ○ ● □ ■ △ ▽
+
+# Currency and Financial
+prices:
+    euro: €100
+    pound: £85
+    yen: ¥1000
+    rupee: ₹500
+    bitcoin: ₿0.001
+
+# Combining Characters and Diacritics
+name_french: Café résumé naïve
+name_spanish: Señor Peña
+name_turkish: Öğrenci İstanbul
+name_vietnamese: Nguyễn Phạm
+
+# Mixed Complex Content
+description: "Testing 测试 тест テスト 🧪 ∞"

@@ -1,0 +1,11 @@
+first_line: value
+
+second_line: another_value
+
+
+multiple_blank_lines: test
+    indented: value
+        nested: deep
+
+trailing_spaces: value
+

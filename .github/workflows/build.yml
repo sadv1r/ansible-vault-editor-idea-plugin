@@ -15,7 +15,6 @@ jobs:
     outputs:
       version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
-      pluginVerifierHomeDir: ${{ steps.properties.outputs.pluginVerifierHomeDir }}
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v4
@@ -40,9 +39,6 @@ jobs:
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "pluginVerifierHomeDir=~/.pluginVerifier" >> $GITHUB_OUTPUT
-          
-          ./gradlew listProductsReleases
 
       - name: Build plugin
         run: ./gradlew buildPlugin --scan
@@ -87,6 +83,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Install ansible-lint
+        run: pip install ansible-lint
+
       - name: Run Tests
         run: ./gradlew test
 
@@ -96,12 +95,6 @@ jobs:
         with:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
-
-      - name: Install ansible-lint
-        run: pip install ansible-lint
-
-      - name: Test generated vaults with official CLI tools
-        run: ./gradlew integrationTest
 
   inspectCode:
     name: Inspect code
@@ -165,14 +158,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Setup Plugin Verifier IDEs Cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
-
+      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
       - name: Run Plugin Verification tasks
-        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
+        run: ./gradlew verifyPlugin
 
       - name: Collect Plugin Verifier Result
         if: always()

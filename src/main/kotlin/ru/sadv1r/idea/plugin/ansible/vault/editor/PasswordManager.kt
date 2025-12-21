@@ -4,7 +4,6 @@ import com.intellij.credentialStore.CredentialAttributes
 import com.intellij.credentialStore.Credentials
 import com.intellij.credentialStore.generateServiceName
 import com.intellij.ide.passwordSafe.PasswordSafe
-import org.jetbrains.annotations.Nullable
 
 fun savePassword(vault: Vault, password: CharArray) {
     val createCredentialAttributes = createCredentialAttributes(vault.getKey())
@@ -12,7 +11,7 @@ fun savePassword(vault: Vault, password: CharArray) {
     PasswordSafe.instance.set(createCredentialAttributes, credentials)
 }
 
-fun getPassword(vault: Vault): @Nullable String? {
+fun getPassword(vault: Vault): String? {
     val createCredentialAttributes = createCredentialAttributes(vault.getKey())
     return PasswordSafe.instance.getPassword(createCredentialAttributes)
 }

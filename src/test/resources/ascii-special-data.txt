@@ -1,0 +1,5 @@
+file_path: /usr/bin/ansible-vault
+windows_path: C:\Program Files\Ansible\ansible.cfg
+url: http://example.com:8080/path/to/resource
+special_chars: test-value_with.dots and spaces
+mixed_separators: value/with\various:separators-here_and.there
