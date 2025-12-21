@@ -28,21 +28,13 @@ dependencies {
     testImplementation 'com.github.stefanbirkner:system-lambda:1.2.1'
     testImplementation 'junit:junit:4.13.2'
 
-    // IntelliJ Platform Dependencies
+    // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
         create(providers.gradleProperty('platformType'), providers.gradleProperty('platformVersion'))
 
-        // Bundled plugin dependencies
         bundledPlugin('org.jetbrains.plugins.yaml')
 
-        // Test framework
         testFramework(TestFrameworkType.Platform.INSTANCE)
-
-        // Required for plugin verification
-        pluginVerifier()
-
-        // Required for running instrumented code
-        instrumentationTools()
     }
 }
 
