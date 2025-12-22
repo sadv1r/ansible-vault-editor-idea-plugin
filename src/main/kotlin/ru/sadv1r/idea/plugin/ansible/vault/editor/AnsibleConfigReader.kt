@@ -1,6 +1,6 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor
 
-import com.intellij.openapi.util.io.FileUtil
+import com.intellij.openapi.util.io.OSAgnosticPathUtil
 import com.intellij.util.SystemProperties
 import java.io.BufferedReader
 import java.io.File
@@ -45,7 +45,7 @@ private fun getPasswordFromFile(vaultId: String?): String? {
 
 fun getPasswordFilePath(): String? {
     System.getenv("ANSIBLE_VAULT_PASSWORD_FILE")
-        ?.let { return FileUtil.expandUserHome(it) }
+        ?.let { return OSAgnosticPathUtil.expandUserHome(it) }
 
     return getPasswordFilePathFromConfig()
 }
@@ -57,7 +57,7 @@ private fun getPasswordFilePathFromConfig(): String? {
     // environment variable if set
     val configPathEnv = System.getenv("ANSIBLE_CONFIG")
     if (configPathEnv != null) {
-        getPasswordFilePathFromConfig(FileUtil.expandUserHome(configPathEnv))
+        getPasswordFilePathFromConfig(OSAgnosticPathUtil.expandUserHome(configPathEnv))
             ?.let { return it }
     }
 
@@ -84,5 +84,5 @@ private fun getPasswordFilePathFromConfig(configPath: String): String? {
 
     val passwordFilePath = properties.getProperty("vault_password_file")
 
-    return if (passwordFilePath != null) FileUtil.expandUserHome(passwordFilePath) else null
+    return if (passwordFilePath != null) OSAgnosticPathUtil.expandUserHome(passwordFilePath) else null
 }
