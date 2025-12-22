@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Change since build to `242` (2024.2)
 - Upgraded IntelliJ Platform Gradle Plugin from 1.17.4 to 2.10.5
 
 ### Deprecated

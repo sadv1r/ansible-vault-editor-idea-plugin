@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: zulu
-          java-version: 17
+          java-version: 21
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -78,7 +78,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: zulu
-          java-version: 17
+          java-version: 21
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -124,7 +124,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: zulu
-          java-version: 17
+          java-version: 21
 
       - name: Qodana - Code Inspection
         uses: JetBrains/qodana-action@v2024.2
@@ -155,7 +155,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: zulu
-          java-version: 17
+          java-version: 21
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
