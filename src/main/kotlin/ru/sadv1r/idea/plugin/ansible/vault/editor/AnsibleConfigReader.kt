@@ -26,7 +26,7 @@ private fun getPasswordFromFile(vaultId: String?): String? {
         return if (file.canExecute()) {
             try {
                 val process = if (vaultId == null) {
-                    Runtime.getRuntime().exec(file.absolutePath)
+                    Runtime.getRuntime().exec(arrayOf(file.absolutePath))
                 } else {
                     Runtime.getRuntime().exec(arrayOf(file.absolutePath, "--vault-id", vaultId))
                 }
