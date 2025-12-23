@@ -1,6 +1,6 @@
 plugins {
     // https://docs.gradle.com/develocity/gradle-plugin/current/#applying_the_plugin
-    id "com.gradle.develocity" version "3.19.2"
+    id "com.gradle.develocity" version "4.3"
 }
 
 // https://docs.gradle.com/develocity/gradle-plugin/current/#connecting_to_scans_gradle_com
