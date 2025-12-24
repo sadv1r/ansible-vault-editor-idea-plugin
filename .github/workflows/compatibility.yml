@@ -11,25 +11,31 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: 21
-          cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew buildPlugin
+
       - name: Verify IDEA compatibility
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v2.0.3
         with:
           ide-versions: |
-            ideaIC:LATEST-EAP-SNAPSHOT
-            ideaIU:LATEST-EAP-SNAPSHOT
+            idea:LATEST-EAP-SNAPSHOT
+
       - name: Get log file path and print contents
         run: |
           echo "The log file path is: ${{steps.verify.outputs.verification-output-log-filename}}";
           cat ${{steps.verify.outputs.verification-output-log-filename}}
+
       - name: Notify to Telegram
         uses: yanzay/notify-telegram@v0.1.0
         if: always()
