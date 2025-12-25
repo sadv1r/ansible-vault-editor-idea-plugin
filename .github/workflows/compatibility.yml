@@ -28,6 +28,7 @@ jobs:
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v2.0.3
         with:
+          # https://www.jetbrains.com/intellij-repository/snapshots/
           ide-versions: |
             idea:LATEST-EAP-SNAPSHOT
 

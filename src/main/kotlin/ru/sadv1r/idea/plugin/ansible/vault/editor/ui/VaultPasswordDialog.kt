@@ -1,10 +1,10 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor.ui
 
 import com.intellij.openapi.ui.DialogWrapper
+import com.intellij.ui.JBColor
 import ru.sadv1r.idea.plugin.ansible.vault.editor.Vault
 import ru.sadv1r.idea.plugin.ansible.vault.editor.savePassword
 import java.awt.BorderLayout
-import java.awt.Color
 import java.awt.Component
 import java.io.IOException
 import javax.swing.*
@@ -39,7 +39,7 @@ class VaultPasswordDialog(
 
         wrongPasswordLabel = JLabel("Wrong password, please try again")
         wrongPasswordLabel.alignmentX = Component.LEFT_ALIGNMENT
-        wrongPasswordLabel.foreground = Color.RED
+        wrongPasswordLabel.foreground = JBColor.RED
         wrongPasswordLabel.isVisible = false
         dialogPanel.add(wrongPasswordLabel, BorderLayout.CENTER)
 
