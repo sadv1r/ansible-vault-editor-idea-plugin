@@ -1,6 +1,8 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
+import static org.jetbrains.changelog.ExtensionsKt.markdownToHTML
+
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '2.2.21'
@@ -53,23 +55,21 @@ intellijPlatform {
     pluginConfiguration {
         name = 'Ansible Vault Editor'
 
-        description = """
-Helps you create and edit Ansible Vaults
-<br/>
-<br/>
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin">GitHub</a> |
-<a href="https://github.com/sadv1r/ansible-vault-editor-idea-plugin/issues">Issues</a>
-<br/>
-<br/>
-<b>Features</b>
-<ul>
-    <li>Encrypt <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-files-with-ansible-vault">file as Ansible Vault</a></li>
-    <li>Encrypt <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-individual-variables-with-ansible-vault">individual YAML property</a></li>
-    <li>Modify existing Vault with auto encryption/decryption and protection from accidental pushing of sensitive data</li>
-    <li>Remember each vault <a href="https://www.jetbrains.com/help/idea/reference-ide-settings-password-safe.html">password</a> or use <a href ="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file">DEFAULT_VAULT_PASSWORD_FILE</a> configuration</li>
-    <li>Re-encrypt vault with new password</li>
-</ul>
-"""
+        description = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+            def start = "<!-- Plugin description -->"
+            def end = "<!-- Plugin description end -->"
+            def lines = it.readLines()
+
+            if (!lines.contains(start) || !lines.contains(end)) {
+                throw new GradleException("Plugin description section not found in README.md:\n$start ... $end")
+            }
+
+            def startIdx = lines.indexOf(start)
+            def endIdx = lines.indexOf(end)
+            def content = lines.subList(startIdx + 1, endIdx).join("\n")
+
+            markdownToHTML(content, "")
+        }
 
         changeNotes = provider {
             changelog.renderItem(
