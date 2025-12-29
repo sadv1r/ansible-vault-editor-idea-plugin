@@ -53,29 +53,7 @@ intellijPlatform {
     pluginConfiguration {
         name = 'Ansible Vault Editor'
 
-        ideaVersion {
-            sinceBuild = "242"
-            // No untilBuild - allows forward compatibility
-        }
-    }
-
-    pluginVerification {
-        ides {
-            recommended()
-        }
-    }
-}
-
-changelog {
-    version = project.version
-    headerParserRegex = ~/(\d+\.\d+)/
-}
-
-patchPluginXml {
-    //https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html
-    sinceBuild = "242"
-
-    pluginDescription = """
+        description = """
 Helps you create and edit Ansible Vaults
 <br/>
 <br/>
@@ -93,7 +71,7 @@ Helps you create and edit Ansible Vaults
 </ul>
 """
 
-    changeNotes.set(
+        changeNotes = provider {
             changelog.renderItem(
                     changelog
                             .getLatest()
@@ -101,7 +79,24 @@ Helps you create and edit Ansible Vaults
                             .withEmptySections(false),
                     Changelog.OutputType.HTML
             )
-    )
+        }
+
+        ideaVersion {
+            sinceBuild = "242"
+            // No untilBuild - allows forward compatibility
+        }
+    }
+
+    pluginVerification {
+        ides {
+            recommended()
+        }
+    }
+}
+
+changelog {
+    version = project.version
+    headerParserRegex = ~/(\d+\.\d+)/
 }
 
 publishPlugin {
