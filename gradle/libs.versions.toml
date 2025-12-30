@@ -1,0 +1,23 @@
+[versions]
+# libraries
+pbkdf2 = "1.1.4"
+systemLambda = "1.2.1"
+junit = "4.13.2"
+opentest4j = "1.3.0"
+
+# plugins
+changelog = "2.5.0"
+intellijPlatform = "2.10.5"
+kotlin = "2.2.21"
+
+[libraries]
+pbkdf2 = { group = "de.rtner", name = "PBKDF2", version.ref = "pbkdf2" }
+systemLambda = { group = "com.github.stefanbirkner", name = "system-lambda", version.ref = "systemLambda" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+opentest4j = { group = "org.opentest4j", name = "opentest4j", version.ref = "opentest4j" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
+
+[plugins]
+changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
+intellijPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intellijPlatform" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
