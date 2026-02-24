@@ -26,7 +26,7 @@ jobs:
 
       - name: Verify IDEA compatibility
         id: verify
-        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v2.0.3
+        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v2.0.4
         with:
           # https://www.jetbrains.com/intellij-repository/snapshots/
           ide-versions: |
