@@ -69,6 +69,22 @@ internal class AnsibleConfigReaderKtTest {
     }
 
     @Test
+    fun getPasswordFilePathFromConfigInEnvRelativeToConfigDirectory() {
+        val tempDir = Files.createTempDirectory("ansibleConfigInEnvRelative")
+        val tempConfigFile: File = File.createTempFile("ansible", ".cfg", tempDir.toFile())
+        tempConfigFile.writeText(
+            """
+            vault_password_file=secrets/pass.txt
+        """.trimIndent()
+        )
+
+        val filePath: String? = withEnvironmentVariable("ANSIBLE_CONFIG", tempConfigFile.absolutePath)
+            .execute(Callable { getPasswordFilePath(null) })
+
+        assertEquals(File(tempConfigFile.parentFile, "secrets/pass.txt").path, filePath)
+    }
+
+    @Test
     fun getPasswordFilePathFromConfigInHomeDirectory() {
         val tempDir = Files.createTempDirectory("")
         val tempConfigFile = Path.of(tempDir.toString(), ".ansible.cfg").toFile()
@@ -83,6 +99,68 @@ internal class AnsibleConfigReaderKtTest {
 
             assertEquals("/c/passFileFromConfigInHomeDirectory.txt", getPasswordFilePath(null))
         }
+    }
+
+    @Test
+    fun getPasswordFilePathFromConfigHierarchyFromVaultDirectory() {
+        val rootDir = Files.createTempDirectory("ansibleConfigHierarchy").toFile()
+        val parentDir = File(rootDir, "inventory")
+        val vaultDir = File(parentDir, "group_vars")
+        vaultDir.mkdirs()
+
+        File(parentDir, "ansible.cfg").writeText(
+            """
+            vault_password_file=.vault-pass.txt
+        """.trimIndent()
+        )
+
+        assertEquals(
+            File(parentDir, ".vault-pass.txt").path,
+            getPasswordFilePathFromConfigHierarchy(vaultDir)
+        )
+    }
+
+    @Test
+    fun getPasswordFilePathFromConfigHierarchySkipsConfigWithoutPasswordFile() {
+        val rootDir = Files.createTempDirectory("ansibleConfigHierarchySkip").toFile()
+        val withNoPasswordDir = File(rootDir, "project")
+        val vaultDir = File(withNoPasswordDir, "group_vars")
+        vaultDir.mkdirs()
+
+        File(vaultDir, "ansible.cfg").writeText(
+            """
+            inventory=hosts
+        """.trimIndent()
+        )
+
+        File(rootDir, "ansible.cfg").writeText(
+            """
+            vault_password_file=secrets/vault.txt
+        """.trimIndent()
+        )
+
+        assertEquals(
+            File(rootDir, "secrets/vault.txt").path,
+            getPasswordFilePathFromConfigHierarchy(vaultDir)
+        )
+    }
+
+    @Test
+    fun getPasswordFilePathFromConfigHierarchySupportsAbsolutePath() {
+        val rootDir = Files.createTempDirectory("ansibleConfigHierarchyAbsolute").toFile()
+        val vaultDir = File(rootDir, "group_vars")
+        vaultDir.mkdirs()
+
+        File(rootDir, "ansible.cfg").writeText(
+            """
+            vault_password_file=/opt/ansible/pass.txt
+        """.trimIndent()
+        )
+
+        assertEquals(
+            "/opt/ansible/pass.txt",
+            getPasswordFilePathFromConfigHierarchy(vaultDir)
+        )
     }
 
 }

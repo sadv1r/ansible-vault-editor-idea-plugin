@@ -1,5 +1,6 @@
 package ru.sadv1r.idea.plugin.ansible.vault.editor
 
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.util.SystemProperties
 import java.io.BufferedReader
@@ -66,17 +67,15 @@ private fun getPasswordFilePathFromConfig(vault: Vault?): String? {
     getPasswordFilePathFromConfig("ansible.cfg")
         ?.let { return it }
 
-    // in module root - interpret relative paths from module root
-    if (vault != null) {
-        val moduleRoot = vault.getModuleRoot()!!.path
-        getPasswordFilePathFromConfig("$moduleRoot/ansible.cfg")
-            ?.let { return if (FileUtil.isAbsolute(it)) it else "$moduleRoot/$it" }
-    }
+    // starting from encrypted file directory up to filesystem root - interpret relative paths from config directory
+    getVaultFileDirectory(vault)
+        ?.let { getPasswordFilePathFromConfigHierarchy(it) }
+        ?.let { return it }
 
     // in the home directory interpret relative paths from home directory
     val userHome = SystemProperties.getUserHome()
     getPasswordFilePathFromConfig("$userHome/.ansible.cfg")
-        ?.let { return if (FileUtil.isAbsolute(it)) it else "$userHome/$it" }
+        ?.let { return it }
 
     // default config - we expect absolute path in it
     getPasswordFilePathFromConfig("/etc/ansible/ansible.cfg")
@@ -85,15 +84,48 @@ private fun getPasswordFilePathFromConfig(vault: Vault?): String? {
     return null
 }
 
+internal fun getPasswordFilePathFromConfigHierarchy(startDirectory: File): String? {
+    var currentDirectory: File? = startDirectory
+
+    while (currentDirectory != null) {
+        val configPath = File(currentDirectory, "ansible.cfg").absolutePath
+        getPasswordFilePathFromConfig(configPath)
+            ?.let { return it }
+        currentDirectory = currentDirectory.parentFile
+    }
+
+    return null
+}
+
+private fun getVaultFileDirectory(vault: Vault?): File? {
+    if (vault == null) {
+        return null
+    }
+
+    val vaultFile = FileDocumentManager.getInstance().getFile(vault.getDocument()) ?: return null
+    return File(vaultFile.path).parentFile
+}
+
 private fun getPasswordFilePathFromConfig(configPath: String): String? {
     val properties = Properties()
-    val userHomeFile = File(configPath)
-    if (userHomeFile.canRead()) {
-        FileReader(userHomeFile)
+    val configFile = File(configPath)
+    if (configFile.canRead()) {
+        FileReader(configFile)
             .use { properties.load(it) }
     }
 
     val passwordFilePath = properties.getProperty("vault_password_file")
+        ?.let { FileUtil.expandUserHome(it) }
+        ?: return null
 
-    return if (passwordFilePath != null) FileUtil.expandUserHome(passwordFilePath) else null
+    return if (FileUtil.isAbsolute(passwordFilePath)) {
+        passwordFilePath
+    } else {
+        val configDirectory = configFile.absoluteFile.parentFile
+        if (configDirectory != null) {
+            File(configDirectory, passwordFilePath).path
+        } else {
+            passwordFilePath
+        }
+    }
 }
