@@ -4,12 +4,13 @@ import de.rtner.security.auth.spi.PBKDF2Engine;
 import de.rtner.security.auth.spi.PBKDF2Parameters;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Arrays;
-import java.util.Random;
 
 public class EncryptionKeychain {
 
     private static final String CHAR_ENCODING = "UTF-8";
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     private final String password;
     private final byte[] salt;
@@ -73,7 +74,7 @@ public class EncryptionKeychain {
 
     private byte[] generateSalt(int length) {
         byte[] salt = new byte[length];
-        new Random().nextBytes(salt);
+        RANDOM.nextBytes(salt);
         return salt;
     }
 

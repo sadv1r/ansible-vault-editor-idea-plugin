@@ -19,6 +19,8 @@
 
 ### Security
 
+- Use cryptographically secure RNG (`SecureRandom`) for vault salt generation
+
 ## 1.22 - 2025-09-16
 
 ### Changed
