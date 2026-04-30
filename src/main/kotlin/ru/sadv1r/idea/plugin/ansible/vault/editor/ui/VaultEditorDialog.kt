@@ -34,7 +34,7 @@ class VaultEditorDialog(
 
         decryptedDocument = editorFactory.createDocument(
             decryptedDocumentData.toString(Charsets.UTF_8),
-            true, false
+            acceptsSlashR = true, allowUpdatesWithoutWriteAction = false
         )
         decryptedDocument.setReadOnly(false)
         editor = editorFactory.createEditor(decryptedDocument) as EditorEx
